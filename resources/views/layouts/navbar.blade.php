@@ -1,7 +1,7 @@
 <header class="mb-4">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         {{-- トップページへのリンク --}}
-        <a class="navbar-brand" href="/">カタローヤ</a>
+        <h1><a class="navbar-brand" href="/">カタローヤ</a></h1>
 
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav-bar">
             <span class="navbar-toggler-icon"></span>

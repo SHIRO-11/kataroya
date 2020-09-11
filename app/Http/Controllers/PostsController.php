@@ -14,7 +14,17 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
+        $data = [];
+        // ユーザの投稿の一覧を作成日時の降順で取得
+        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
+
+
+        $data = [
+                'posts' => $posts,
+            ];
+
+        // Welcomeビューでそれらを表示
+        return view('posts.index', $data);
     }
 
     /**
@@ -44,7 +54,7 @@ class PostsController extends Controller
         ]);
 
         // 前のURLへリダイレクトさせる
-        return back();
+        return redirect('/');
     }
 
     /**
@@ -55,7 +65,7 @@ class PostsController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('posts.show', compact('post'));
     }
 
     /**

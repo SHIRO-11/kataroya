@@ -6,3 +6,9 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+//全ページ共通
+@import 'commons';
+
+// トップページ
+@import 'top';
