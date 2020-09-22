@@ -37257,6 +37257,45 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/js/ajaxlike.js":
+/*!**********************************!*\
+  !*** ./resources/js/ajaxlike.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(function () {
+  var like = $('.js-like-toggle');
+  var likePostId;
+  like.on('click', function () {
+    var $this = $(this);
+    likePostId = $this.data('postid');
+    $.ajax({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      url: '/ajaxlike',
+      type: 'POST',
+      data: {
+        'post_id': likePostId
+      }
+    }) // Ajaxリクエストが成功した場合
+    .done(function (data) {
+      $this.toggleClass('loved');
+      $this.next('.likesCount').html(data.postLikesCount);
+      console.log(data.postLikesCount);
+    }) // Ajaxリクエストが失敗した場合
+    .fail(function (data, xhr, err) {
+      console.log('エラー');
+      console.log(err);
+      console.log(xhr);
+    });
+    return false;
+  });
+});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -37265,6 +37304,10 @@ module.exports = function(module) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+__webpack_require__(/*! ./modal.js */ "./resources/js/modal.js");
+
+__webpack_require__(/*! ./ajaxlike.js */ "./resources/js/ajaxlike.js");
 
 /***/ }),
 
@@ -37310,6 +37353,46 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/modal.js":
+/*!*******************************!*\
+  !*** ./resources/js/modal.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(function () {
+  // 投稿の＋マークを押したときの処理
+  $('.js-modal-open-post').on('click', function () {
+    $('.js-modal').fadeIn();
+    return false;
+  });
+  $('.js-modal-close').on('click', function () {
+    $('.js-modal').fadeOut();
+    return false;
+  });
+  $('.js-modal-open').on('click', function () {
+    $('.js-modal').fadeIn();
+    return false;
+  });
+  $('.js-modal-close').on('click', function () {
+    $('.js-modal').fadeOut();
+    return false;
+  }); // ゲストユーザがハートマークを押したときの処理
+
+  2;
+  3;
+  $(document).on('click', '.js-modal-open-heart', function () {
+    $('.js-modal-heart').fadeIn();
+    return false;
+  });
+  $(document).on('click', '.js-modal-close-heart', function () {
+    $('.js-modal-heart').fadeOut();
+    return false;
+  });
+});
 
 /***/ }),
 

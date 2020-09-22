@@ -1,3 +1,6 @@
+// サイトのメイン
+$main-color: #2ea6ff;
+
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
@@ -12,3 +15,15 @@
 
 // トップページ
 @import 'top';
+
+//投稿の詳細ページ
+@import 'show';
+
+// モーダルウインドウのページ
+@import 'modal';
+
+//ユーザーのshow
+@import 'users/show';
+
+//ユーザーのedit
+@import 'users/edit';

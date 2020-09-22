@@ -11,14 +11,17 @@
 |
 */
 
-Route::get('/', 'PostsController@index')->name('posts.index');
-Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('comments', 'CommentsController', ['only' => ['store','show','index']]);
 Route::resource('users', 'UsersController');
+Route::get('/', 'PostsController@index')->name('posts.index');
+Route::resource('posts', 'PostsController', ['only' => ['show']]);
+
 
 
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::resource('posts', 'PostsController')->except('posts.index');
+    Route::resource('posts', 'PostsController', ['except' => ['index','show']]);
+    Route::post('ajaxlike', 'PostsController@ajaxlike')->name('posts.ajaxlike');
 });
 
 Auth::routes();

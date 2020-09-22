@@ -1,5 +1,5 @@
 <header class="mb-4">
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="background-color:#2ea6ff;">
         {{-- トップページへのリンク --}}
         <h1><a class="navbar-brand" href="/">カタローヤ</a></h1>
 
@@ -21,6 +21,9 @@
                 @endif
                 @else
                 <li class="nav-item dropdown">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('users.show',Auth::user()->id) }}"><i class="fas fa-user"></i> マイページ</a>
+                    </li>
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->name }} <span class="caret"></span>
