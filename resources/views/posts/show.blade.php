@@ -5,7 +5,7 @@
     <div class="col-md-8">
         <div class="show-post-wrapper">
             <div id="show-main-post-wrapper">
-                <p class="ribbon5" id='show-post-category'>{{$post->category}}</p>
+                <p class="category" id='show-post-category'><i class="fas fa-tags"></i> {{$post->category}}</p>
                 <h2 id="show-post-title">{{$post->title}}</h2>
                 <p id="show-post-content">{!! nl2br(e($post->content)) !!}</p>
                 @auth
@@ -33,7 +33,7 @@
                     </div>
                 @endguest
                 <p class="reply-marke"><i class="fas fa-comments"></i></p>
-                <p id='show-post-user'><a href="{{route('users.show',['user'=>$post->user->id])}}">{{$post->user->name}}</a>
+                <p id='show-post-user'><a href="{{route('users.show',['user'=>$post->user->id])}}"><img id="show-post-img" src="/storage/avatar/{{$post->user->profile_image}}"> {{$post->user->name}}</a>
                     さんの投稿</p>
                 <p id="show-post-date"><i class="fas fa-calendar-alt"></i> {{$post->created_at}}</p>
             </div>

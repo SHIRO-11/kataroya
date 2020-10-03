@@ -1,5 +1,18 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
+.title {
+  font-size: 16px;
+  padding: 10px 0;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.title span {
+  font-size: 14px;
+  color: #ababab;
+  margin-left: 10px;
+}
+
 /*!
  * Bootstrap v4.5.2 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
@@ -10930,32 +10943,6 @@ body .reply-marke {
   margin-left: 10px;
 }
 
-body .ribbon5 {
-  display: inline-block;
-  position: relative;
-  text-align: center;
-  padding: 7px 0;
-  /*文字サイズ*/
-  background: #7f9dfb;
-  /*背景色*/
-  color: #FFF;
-  /*文字色*/
-  box-sizing: border-box;
-}
-
-body .ribbon5:after {
-  position: absolute;
-  content: "";
-  z-index: 1;
-  top: 0;
-  right: 0;
-  width: 0px;
-  height: 0px;
-  border-width: 10px 5px 10px 0px;
-  border-color: transparent #fff transparent transparent;
-  border-style: solid;
-}
-
 body .js-modal-open-heart {
   text-decoration: none;
   color: #8a8a8a;
@@ -10965,39 +10952,141 @@ body .navbar .nav-link {
   color: #fff !important;
 }
 
-.top-post-wrapper {
-  background-color: white;
-  margin: 10px 0;
-  border: 1px solid lightgray;
-  border-radius: 10px;
-}
-
-.top-post-wrapper #top-post-title {
-  padding: 5px 10px 0 10px;
-  font-size: 20px;
-}
-
-.top-post-wrapper #top-post-category {
-  font-size: 12px;
-  margin: 10px 0 0 0;
-  padding: 0 10px;
-}
-
-.top-post-wrapper #top-post-content {
-  font-size: 14px;
-  margin: 5px 0 10px 0;
-  padding: 0 10px;
-}
-
-.top-post-wrapper #top-post-user {
-  display: inline-block;
-  padding: 0 10px;
-}
-
-.top-post-wrapper #top-post-date {
-  padding: 0 10px 0 0;
+body .category {
   color: #ababab;
-  float: right;
+}
+
+.main-wrapper .top-post-wrapper {
+  background-color: white;
+  margin-bottom: 10px;
+}
+
+.main-wrapper .top-post-wrapper .top-post-one-wrapper {
+  border-bottom: 1px solid #ebebeb;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.main-wrapper .top-post-wrapper .top-post-one-wrapper .top-post-left {
+  vertical-align: middle;
+}
+
+.main-wrapper .top-post-wrapper .top-post-one-wrapper .top-post-left a .top-post-img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.main-wrapper .top-post-wrapper .top-post-one-wrapper .top-post-left a:hover + .top-profile-hover {
+  /*画像をホバーしている間は表示するようにします*/
+  display: inline-block;
+}
+
+.main-wrapper .top-post-wrapper .top-post-one-wrapper .top-post-left .top-profile-hover {
+  display: none;
+  /*アニメーションを指定します*/
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-name: showballoon;
+          animation-name: showballoon;
+  width: 400px;
+  position: absolute;
+  top: 50px;
+  left: 0px;
+  z-index: 9999;
+  /*表示スタイルを指定します*/
+  padding: 5px;
+  border-radius: 5px;
+  color: #ababab;
+  background-color: #fff;
+  /*影をつけて見栄えを良くします*/
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 1px 0 0 rgba(255, 255, 255, 0.3), inset -1px 0 0 rgba(255, 255, 255, 0.3), inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.main-wrapper .top-post-wrapper .top-post-one-wrapper .top-post-left .top-profile-hover:hover {
+  /*プロフィールboxをホバーしている間は表示するようにします*/
+  display: inline-block;
+}
+
+@-webkit-keyframes showballoon {
+  /*アニメーションを定義します*/
+  0% {
+    opacity: 0;
+    top: 30px;
+  }
+
+  100% {
+    /*表示するようにします*/
+    opacity: 1;
+    top: 50px;
+  }
+}
+
+@keyframes showballoon {
+  /*アニメーションを定義します*/
+  0% {
+    opacity: 0;
+    top: 30px;
+  }
+
+  100% {
+    /*表示するようにします*/
+    opacity: 1;
+    top: 50px;
+  }
+}
+
+.main-wrapper .top-post-wrapper .top-post-one-wrapper .top-post-left .top-profile-hover .top-post-img {
+  display: inline-block;
+}
+
+.main-wrapper .top-post-wrapper .top-post-one-wrapper .top-post-left .top-profile-hover .top-post-user {
+  display: inline-block;
+}
+
+.main-wrapper .top-post-wrapper .top-post-one-wrapper .top-post-left .top-profile-hover .top-post-user-introduction {
+  padding: 5px;
+}
+
+.main-wrapper .top-post-wrapper .top-post-one-wrapper .top-post-right {
+  padding: 10px 5px;
+}
+
+.main-wrapper .top-post-wrapper .top-post-one-wrapper .top-post-right p {
+  margin: 0;
+}
+
+.main-wrapper .top-post-wrapper .top-post-one-wrapper .top-post-right #top-post-category {
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+
+.main-wrapper .top-post-wrapper .top-post-one-wrapper .top-post-right #top-post-title {
+  padding: 0;
+  margin: 0;
+  font-size: 18px;
+}
+
+.main-wrapper .top-post-wrapper .top-post-one-wrapper .top-post-right #top-post-content {
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+.main-wrapper .top-post-wrapper .top-post-one-wrapper .top-post-right .top-post-date {
+  padding: 0 10px;
+  margin: 0;
+  font-size: 12px;
+  color: #ababab;
+  display: inline-block;
+}
+
+.main-wrapper .top-post-wrapper .top-post-one-wrapper .top-post-right .top-post-user {
+  display: inline-block;
+  padding: 0;
 }
 
 .show-post-wrapper {
@@ -11028,6 +11117,13 @@ body .navbar .nav-link {
   font-size: 16px;
   margin: 5px 0 10px 0;
   padding: 0 10px;
+}
+
+.show-post-wrapper #show-main-post-wrapper #show-post-img {
+  border-radius: 50%;
+  margin-bottom: 5px;
+  width: 20px;
+  height: 20px;
 }
 
 .show-post-wrapper #show-main-post-wrapper #show-post-user {
@@ -11065,6 +11161,227 @@ body .navbar .nav-link {
   margin: 0;
   color: #ababab;
   text-align: right;
+}
+
+.side-bar-left {
+  position: -webkit-sticky;
+  position: sticky;
+  padding: 0;
+  top: 10px;
+  height: 300px;
+  border: 1px solid #ebebeb;
+  background-color: #fff;
+}
+
+.side-bar-left a {
+  border-bottom: 1px solid #ebebeb;
+  color: #ababab;
+  display: block;
+  padding: 10px 10px;
+}
+
+@media (min-width: 1120px) {
+  .side-bar-left a {
+    display: block !important;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1119px) {
+  .side-bar-left a {
+    display: block !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .side-bar-left {
+    top: 10px;
+    position: static;
+    height: 100%;
+  }
+
+  .side-bar-left a {
+    display: inline-block !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .side-bar-left {
+    top: 10px;
+    position: static;
+    height: 100%;
+  }
+
+  .side-bar-left a {
+    display: inline-block !important;
+  }
+}
+
+.side-active {
+  background-color: #2ea6ff;
+  color: #fff !important;
+}
+
+#profile-wrapper {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
+#profile-wrapper #profile {
+  background-color: white;
+  padding: 20px;
+}
+
+#profile-wrapper #profile #profile-img {
+  text-align: center;
+}
+
+#profile-wrapper #profile #profile-img img {
+  border-radius: 50%;
+}
+
+#profile-wrapper #profile #profile-name {
+  text-align: center;
+}
+
+#profile-wrapper #profile #profile-site {
+  text-align: center;
+}
+
+#profile-wrapper #profile #profile-site i {
+  font-size: 14px;
+  color: #838383;
+}
+
+#profile-wrapper #profile #profile-sns {
+  margin: 10px 0;
+  text-align: center;
+  font-size: 26px;
+}
+
+#profile-wrapper #profile #profile-sns #twitter {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+#profile-wrapper #profile #profile-sns #twitter i {
+  color: #00acee;
+}
+
+#profile-wrapper #profile #profile-sns #twitter i:hover {
+  color: rgba(0, 172, 238, 0.6);
+}
+
+#profile-wrapper #profile #profile-sns #instagram {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+#profile-wrapper #profile #profile-sns #instagram i {
+  color: #CF2E92;
+}
+
+#profile-wrapper #profile #profile-sns #instagram i:hover {
+  color: rgba(207, 46, 146, 0.6);
+}
+
+#profile-wrapper #profile #profile-sns #youtube {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+#profile-wrapper #profile #profile-sns #youtube i {
+  color: #DA1725;
+}
+
+#profile-wrapper #profile #profile-sns #youtube i:hover {
+  color: rgba(218, 23, 37, 0.6);
+}
+
+#profile-wrapper #profile #profile-introduction {
+  text-align: center;
+}
+
+#profile-wrapper #profile #profile-counts {
+  text-align: center;
+  font-size: 16px;
+}
+
+#profile-wrapper #profile #profile-counts a {
+  color: #2ea6ff;
+}
+
+#profile-wrapper #profile #profile-counts .profile-active {
+  background-color: #2ea6ff !important;
+  color: #fff !important;
+}
+
+#profile-wrapper #profile #profile-counts #profile-posts {
+  display: inline-block;
+  margin: 10px 15px;
+  width: 70px;
+  background-color: #fff;
+  border: 1px solid #2ea6ff;
+  border-radius: 3px;
+}
+
+#profile-wrapper #profile #profile-counts #profile-posts:hover {
+  background-color: #2ea6ff;
+  color: #fff;
+}
+
+#profile-wrapper #profile #profile-counts #profile-posts #profile-posts-count {
+  margin-bottom: 0;
+}
+
+#profile-wrapper #profile #profile-counts #profile-posts #profile-posts-name {
+  font-size: 12px;
+  margin-bottom: 0;
+}
+
+#profile-wrapper #profile #profile-counts #profile-likes {
+  display: inline-block;
+  margin: 10px 15px;
+  width: 70px;
+  background-color: #fff;
+  border-radius: 3px;
+  border: 1px solid #2ea6ff;
+}
+
+#profile-wrapper #profile #profile-counts #profile-likes:hover {
+  background-color: #2ea6ff;
+  color: #fff;
+}
+
+#profile-wrapper #profile #profile-counts #profile-likes #profile-likes-count {
+  margin-bottom: 0;
+}
+
+#profile-wrapper #profile #profile-counts #profile-likes #profile-likes-name {
+  font-size: 12px;
+  margin-bottom: 0;
+}
+
+#profile-wrapper #profile #profile-counts #profile-followers {
+  display: inline-block;
+  margin: 10px 15px;
+  width: 70px;
+  background-color: #fff;
+  border-radius: 3px;
+  border: 1px solid #2ea6ff;
+}
+
+#profile-wrapper #profile #profile-counts #profile-followers:hover {
+  background-color: #2ea6ff;
+  color: #fff;
+}
+
+#profile-wrapper #profile #profile-counts #profile-followers #profile-followers-count {
+  margin-bottom: 0;
+}
+
+#profile-wrapper #profile #profile-counts #profile-followers #profile-followers-name {
+  font-size: 12px;
+  margin-bottom: 0;
 }
 
 .modal {
@@ -11143,141 +11460,162 @@ body .navbar .nav-link {
   letter-spacing: 0;
 }
 
-#profile {
-  background-color: white;
+#show-posts-list {
+  padding-top: 20px;
+  background-color: #fff;
 }
 
-#profile #profile-name {
-  text-align: center;
+@media (min-width: 1120px) {
+  #show-posts-list {
+    margin-left: 20px;
+  }
 }
 
-#profile #profile-site i {
-  font-size: 14px;
-  color: #838383;
+@media (min-width: 992px) and (max-width: 1119px) {
+  #show-posts-list {
+    margin-left: 20px;
+  }
 }
 
-#profile #profile-sns {
-  text-align: center;
-  font-size: 26px;
-}
-
-#profile #profile-sns #twitter {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-#profile #profile-sns #twitter i {
-  color: #00acee;
-}
-
-#profile #profile-sns #twitter i:hover {
-  color: rgba(0, 172, 238, 0.6);
-}
-
-#profile #profile-sns #instagram {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-#profile #profile-sns #instagram i {
-  color: #CF2E92;
-}
-
-#profile #profile-sns #instagram i:hover {
-  color: rgba(207, 46, 146, 0.6);
-}
-
-#profile #profile-sns #youtube {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-#profile #profile-sns #youtube i {
-  color: #DA1725;
-}
-
-#profile #profile-sns #youtube i:hover {
-  color: rgba(218, 23, 37, 0.6);
-}
-
-#profile #profile-introduction {
-  text-align: center;
-}
-
-#profile #profile-counts {
-  text-align: center;
+#show-posts-list h2 {
   font-size: 16px;
 }
 
-#profile #profile-counts a {
-  color: #fff;
+#show-posts-list h2 i {
+  color: #2ea6ff;
 }
 
-#profile #profile-counts #profile-posts {
-  display: inline-block;
-  margin: 10px 15px;
-  width: 70px;
-  background-color: #2ea6ff;
-  border-radius: 3px;
+#show-posts-list .show-posts-substance {
+  padding: 15px 0 30px 0;
+  border-bottom: 1px solid #ebebeb;
 }
 
-#profile #profile-counts #profile-posts:hover {
-  background-color: rgba(46, 166, 255, 0.6);
-}
-
-#profile #profile-counts #profile-posts #profile-posts-count {
-  margin-bottom: 0;
-}
-
-#profile #profile-counts #profile-posts #profile-posts-name {
+#show-posts-list .show-posts-substance #show-user-post-category {
   font-size: 12px;
-  margin-bottom: 0;
+  margin-bottom: 5px;
 }
 
-#profile #profile-counts #profile-likes {
-  display: inline-block;
-  margin: 10px 15px;
-  width: 70px;
-  background-color: #2ea6ff;
-  border-radius: 3px;
+#show-posts-list .show-posts-substance #show-post-title {
+  font-size: 20px;
 }
 
-#profile #profile-counts #profile-likes:hover {
-  background-color: rgba(46, 166, 255, 0.6);
-}
-
-#profile #profile-counts #profile-likes #profile-likes-count {
-  margin-bottom: 0;
-}
-
-#profile #profile-counts #profile-likes #profile-likes-name {
-  font-size: 12px;
-  margin-bottom: 0;
-}
-
-#profile #profile-counts #profile-followers {
-  display: inline-block;
-  margin: 10px 15px;
-  width: 70px;
-  background-color: #2ea6ff;
-  border-radius: 3px;
-}
-
-#profile #profile-counts #profile-followers:hover {
-  background-color: rgba(46, 166, 255, 0.6);
-}
-
-#profile #profile-counts #profile-followers #profile-followers-count {
-  margin-bottom: 0;
-}
-
-#profile #profile-counts #profile-followers #profile-followers-name {
-  font-size: 12px;
-  margin-bottom: 0;
+#show-posts-list .show-posts-substance #show-post-date {
+  padding: 0 10px 0 0;
+  color: #ababab;
+  float: right;
 }
 
 .profile-edit {
   background-color: white;
   padding: 30px;
+}
+
+.user-index-wrapper {
+  background-color: white;
+  margin-bottom: 10px;
+}
+
+.user-index-wrapper .user-index-one-wrapper {
+  border-bottom: 1px solid #ebebeb;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.user-index-wrapper .user-index-one-wrapper .user-index-left {
+  vertical-align: middle;
+}
+
+.user-index-wrapper .user-index-one-wrapper .user-index-left a .top-post-img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.user-index-wrapper .user-index-one-wrapper .user-index-left a:hover + .top-profile-hover {
+  /*画像をホバーしている間は表示するようにします*/
+  display: inline-block;
+}
+
+.user-index-wrapper .user-index-one-wrapper .user-index-left .top-profile-hover {
+  display: none;
+  /*アニメーションを指定します*/
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-name: showballoon;
+          animation-name: showballoon;
+  width: 400px;
+  position: absolute;
+  top: 50px;
+  left: 0px;
+  z-index: 9999;
+  /*表示スタイルを指定します*/
+  padding: 5px;
+  border-radius: 5px;
+  color: #ababab;
+  background-color: #fff;
+  /*影をつけて見栄えを良くします*/
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 1px 0 0 rgba(255, 255, 255, 0.3), inset -1px 0 0 rgba(255, 255, 255, 0.3), inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.user-index-wrapper .user-index-one-wrapper .user-index-left .top-profile-hover:hover {
+  /*プロフィールboxをホバーしている間は表示するようにします*/
+  display: inline-block;
+}
+
+@keyframes showballoon {
+  /*アニメーションを定義します*/
+  0% {
+    opacity: 0;
+    top: 30px;
+  }
+
+  100% {
+    /*表示するようにします*/
+    opacity: 1;
+    top: 50px;
+  }
+}
+
+.user-index-wrapper .user-index-one-wrapper .user-index-left .top-profile-hover .top-post-img {
+  display: inline-block;
+}
+
+.user-index-wrapper .user-index-one-wrapper .user-index-left .top-profile-hover .top-post-user {
+  display: inline-block;
+}
+
+.user-index-wrapper .user-index-one-wrapper .user-index-left .top-profile-hover .top-post-user-introduction {
+  padding: 5px;
+}
+
+.user-index-wrapper .user-index-one-wrapper .user-index-right {
+  padding: 10px 5px;
+}
+
+.user-index-wrapper .user-index-one-wrapper .user-index-right p {
+  margin: 0;
+}
+
+.user-index-wrapper .user-index-one-wrapper .user-index-right .user-name {
+  padding: 0;
+  margin: 0;
+  font-size: 18px;
+}
+
+.user-index-wrapper .user-index-one-wrapper .user-index-right .user-introduction {
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar-right .user-lanking-wrapper {
+  background-color: #fff;
+  width: 100%;
+}
+
+.sidebar-right .user-lanking-wrapper img {
+  width: 50px;
+  height: 50px;
 }
 

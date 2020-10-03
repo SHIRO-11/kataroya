@@ -1,0 +1,20 @@
+// サイトのメイン
+$main-color: #2ea6ff;
+//ボーダーカラー
+$border: rgb(235, 235, 235);
+
+//グレー系の色
+$gray-color:#ababab;
+
+.title {
+    font-size: 16px;
+    padding: 10px 0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid $border;
+
+    span {
+        font-size: 14px;
+        color: $gray-color;
+        margin-left: 10px;
+    }
+}

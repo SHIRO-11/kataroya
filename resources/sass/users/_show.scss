@@ -1,142 +1,40 @@
-#profile {
-    background-color: white;
+#show-posts-list {
+    padding-top: 20px;
+    background-color: #fff;
 
-    #profile-name {
-        text-align: center;
+    @include lg {
+        margin-left: 20px;
     }
 
-    #profile-site {
-        i {
-            font-size: 14px;
-            color: #838383;
-        }
+    @include md {
+        margin-left: 20px;
     }
 
-    #profile-sns {
-        $sns-margin: 10px;
-
-        text-align: center;
-        font-size: 26px;
-
-        #twitter {
-            display: inline-block;
-            margin: 0 $sns-margin;
-
-            i {
-                color: #00acee;
-
-                &:hover {
-                    color: rgba(#00acee, 0.6);
-                }
-            }
-        }
-
-        #instagram {
-            display: inline-block;
-            margin: 0 $sns-margin;
-
-            i {
-                color: #CF2E92;
-
-                &:hover {
-                    color: rgba(#CF2E92, 0.6);
-                }
-            }
-        }
-
-        #youtube {
-            display: inline-block;
-            margin: 0 $sns-margin;
-
-            i {
-                color: #DA1725;
-
-                &:hover {
-                    color: rgba(#DA1725, 0.6);
-                }
-            }
-        }
-    }
-
-    #profile-introduction {
-        text-align: center;
-    }
-
-    #profile-counts {
-        text-align: center;
+    h2 {
         font-size: 16px;
-        $margin: 10px 15px;
-        $name-font-size: 12px;
-        $width: 70px;
-        $back: $main-color;
-        $radius: 3px;
 
-        a {
-            color: #fff;
+        i {
+            color: $main-color;
+        }
+    }
+
+    .show-posts-substance {
+        padding: 15px 0 30px 0;
+        border-bottom: 1px solid $border;
+
+        #show-user-post-category {
+            font-size: 12px;
+            margin-bottom: 5px;
         }
 
-
-        #profile-posts {
-            display: inline-block;
-            margin: $margin;
-            width: $width;
-            background-color: $back;
-            border-radius: $radius;
-
-            &:hover {
-                background-color: rgba($back, 0.6);
-            }
-
-            #profile-posts-count {
-                margin-bottom: 0;
-            }
-
-            #profile-posts-name {
-                font-size: $name-font-size;
-                margin-bottom: 0;
-            }
+        #show-post-title {
+            font-size: 20px;
         }
 
-        #profile-likes {
-            display: inline-block;
-            margin: $margin;
-            width: $width;
-            background-color: $back;
-            border-radius: $radius;
-
-            &:hover {
-                background-color: rgba($back, 0.6);
-            }
-
-            #profile-likes-count {
-                margin-bottom: 0;
-            }
-
-            #profile-likes-name {
-                font-size: $name-font-size;
-                margin-bottom: 0;
-            }
-        }
-
-        #profile-followers {
-            display: inline-block;
-            margin: $margin;
-            width: $width;
-            background-color: $back;
-            border-radius: $radius;
-
-            &:hover {
-                background-color: rgba($back, 0.6);
-            }
-
-            #profile-followers-count {
-                margin-bottom: 0;
-            }
-
-            #profile-followers-name {
-                font-size: $name-font-size;
-                margin-bottom: 0;
-            }
+        #show-post-date {
+            padding: 0 10px 0 0;
+            color: #ababab;
+            float: right;
         }
     }
 }

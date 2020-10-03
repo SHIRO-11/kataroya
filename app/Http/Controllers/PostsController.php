@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Like;
+use App\User;
+use Carbon\Carbon; //カーボンを使用する
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -122,5 +124,54 @@ class PostsController extends Controller
         ];
         //下記の記述でajaxに引数の値を返す
         return response()->json($json);
+    }
+
+    public function category()
+    {
+        return view('posts.category');
+    }
+
+    public function trend($period)
+    {
+        // 現在の日時を取得
+        $now = Carbon::now();
+        // Likeモデルを取得
+        $like_model = new Like;
+        //$postsを定義
+        $posts = null;
+
+        // 前期間
+        if ($period == "all") {
+            $posts = Post::withCount('likes', 'comments')->orderBy('likes_count', 'desc')->orderBy('comments_count', 'desc')->paginate(10);
+        }
+        // 昨日
+        elseif ($period =='day') {
+            $yestaday = $now->subDay();
+            $posts = Post::where('created_at', '>', $yestaday)->withCount('likes', 'comments')->orderBy('likes_count', 'desc')->orderBy('comments_count', 'desc')->paginate(10);
+        }
+        // 1週間
+        elseif ($period =='week') {
+            $week = $now->subWeek();
+            $posts = Post::where('created_at', '>', $week)->withCount('likes', 'comments')->orderBy('likes_count', 'desc')->orderBy('comments_count', 'desc')->paginate(10);
+        }
+        // 1ヶ月
+        elseif ($period =='month') {
+            $month = $now->subMonth();
+            $posts = Post::where('created_at', '>', $month)->withCount('likes', 'comments')->orderBy('likes_count', 'desc')->orderBy('comments_count', 'desc')->paginate(10);
+        }
+        // 半年
+        elseif ($period =='half-a-year') {
+            // 指定された4半期数減らす
+            $half_a_year = $now->subQuarters(2);
+            $posts = Post::where('created_at', '>', $half_a_year)->withCount('likes', 'comments')->orderBy('likes_count', 'desc')->orderBy('comments_count', 'desc')->paginate(10);
+        }
+        // 1年
+        elseif ($period =='year') {
+            $year = $now->subYear();
+            $posts = Post::where('created_at', '>', $year)->withCount('likes', 'comments')->orderBy('likes_count', 'desc')->orderBy('comments_count', 'desc')->paginate(10);
+        }
+
+
+        return view('posts.trend', compact('posts', 'like_model'));
     }
 }

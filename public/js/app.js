@@ -37309,6 +37309,8 @@ __webpack_require__(/*! ./modal.js */ "./resources/js/modal.js");
 
 __webpack_require__(/*! ./ajaxlike.js */ "./resources/js/ajaxlike.js");
 
+__webpack_require__(/*! ./lanking */ "./resources/js/lanking.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -37353,6 +37355,59 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/lanking.js":
+/*!*********************************!*\
+  !*** ./resources/js/lanking.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(function () {
+  var user_lanking_wrapper = $('.user-lanking-wrapper');
+  $(document).on('click', '.lanking-period', function () {
+    var $this = $(this);
+    var period = $this.data('period');
+    var html = "";
+    var nav = "";
+    $.ajax({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      url: '/users/lanking/' + period,
+      type: 'GET',
+      data: {
+        'period': period
+      }
+    }) // Ajaxリクエストが成功した場合
+    .done(function (data) {
+      nav = "\n                <h4>\u30E6\u30FC\u30B6\u30FC\u30E9\u30F3\u30AD\u30F3\u30B0</h4>\n                <ul class=\"nav nav-tabs nav-justified mb-3\">\n                     <li class=\"nav-item\">\n                        <a href=\"\" class=\"lanking-period nav-link ".concat(period == 'week' ? 'active' : '', "\" data-period=\"week\">\u4ECA\u9031</a>\n                    </li>\n\n                    <li class=\"nav-item\">\n                        <a href=\"\" class=\"lanking-period nav-link ").concat(period == 'month' ? 'active' : '', "\" data-period=\"month\">\u4ECA\u6708</a>\n                    </li>\n\n                    <li class=\"nav-item\">\n                        <a href=\"\" class=\"lanking-period nav-link ").concat(period == 'all' ? 'active' : '', "\" data-period=\"all\">\u5168\u671F\u9593</a>\n                    </li>\n                </ul>\n                ");
+      console.log(period);
+
+      var sort = _.orderBy(data, 'total', 'desc');
+
+      $.each(sort, function (index, value) {
+        //dataの中身からvalueを取り出す
+        var id = value.id;
+        var profile_image = value.profile_image;
+        var name = value.name;
+        var total = value.total;
+        html += "\n                    <div class=\"user-lanking-oner-wrapper\">\n                        <p><a href=\"\"><img class=\"top-post-img\"\n                                    src=\"/storage/".concat(profile_image ? 'avatar/' + profile_image : 'images/no-image.jpg', "\">\n                        </p>\n                        <p class=\"user-lanking-name\">").concat(name, "</p>\n\n                    </div>\n                    ");
+        console.log(value);
+      });
+      user_lanking_wrapper.html(nav + html);
+      console.log('成功');
+    }) // Ajaxリクエストが失敗した場合
+    .fail(function (data, xhr, err) {
+      console.log('エラー');
+      console.log(err);
+      console.log(xhr);
+    });
+    return false;
+  });
+});
 
 /***/ }),
 

@@ -1,5 +1,8 @@
-// サイトのメイン
-$main-color: #2ea6ff;
+//style.scssの読み込み
+@import 'style';
+
+//mixin
+@import 'mixin';
 
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
@@ -14,10 +17,16 @@ $main-color: #2ea6ff;
 @import 'commons';
 
 // トップページ
-@import 'top';
+@import 'posts/top';
 
 //投稿の詳細ページ
-@import 'show';
+@import 'posts/show';
+
+//サイドバー
+@import 'posts/sideleft';
+
+//プロフィール
+@import 'users/profile';
 
 // モーダルウインドウのページ
 @import 'modal';
@@ -27,3 +36,10 @@ $main-color: #2ea6ff;
 
 //ユーザーのedit
 @import 'users/edit';
+
+// ユーザーのindex
+@import 'users/index';
+
+// サイドバー右
+// ランキング
+@import 'sidebar/userslanking'

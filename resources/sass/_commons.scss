@@ -1,5 +1,4 @@
 body {
-
     a {
         color: $main-color;
     }
@@ -35,41 +34,18 @@ body {
         margin-left: 10px;
     }
 
-    .ribbon5 {
-        display: inline-block;
-        position: relative;
-        text-align: center;
-        padding: 7px 0;
-        /*文字サイズ*/
-        background: #7f9dfb;
-        /*背景色*/
-        color: #FFF;
-        /*文字色*/
-        box-sizing: border-box;
-    }
-
-    .ribbon5:after {
-        position: absolute;
-        content: "";
-        z-index: 1;
-        top: 0;
-        right: 0;
-        width: 0px;
-        height: 0px;
-        border-width: 10px 5px 10px 0px;
-        border-color: transparent #fff transparent transparent;
-        border-style: solid;
-    }
-
     .js-modal-open-heart {
         text-decoration: none;
         color: rgb(138, 138, 138);
     }
 
     .navbar {
-
         .nav-link {
             color: #fff !important;
         }
+    }
+
+    .category {
+        color: $gray-color;
     }
 }

@@ -14,7 +14,7 @@ class AddManyColumnsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('introduction');
+            $table->string('introduction')->nullable();
             $table->string('blog_url')->nullable();
             $table->string('twitter_url')->nullable();
             $table->string('instagram_url')->nullable();
