@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\Like;
 use App\User;
+use App\Category;
 use Carbon\Carbon; //カーボンを使用する
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -18,25 +19,26 @@ class PostsController extends Controller
      */
     public function index()
     {
+        $me =  User::get_me();
+
         $data = [];
         // ユーザの投稿の一覧を作成日時の降順で取得
-        $posts = Post::withCount('likes', 'comments')->orderBy('created_at', 'desc')->paginate(10);
+        $posts = Post::withCount('likes', 'comments')->orderBy('created_at', 'desc')->paginate(15);
         $like_model = new Like;
+
+        $users_lanking = User::total_score('week')->sortByDesc('total');
 
         $data = [
                 'posts' => $posts,
                 'like_model'=>$like_model,
+                'users_lanking'=>$users_lanking,
+                'me' => $me,
             ];
 
         // Welcomeビューでそれらを表示
         return view('posts.index', $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
@@ -52,11 +54,16 @@ class PostsController extends Controller
         ]);
 
         // 認証済みユーザ（閲覧者）の投稿として作成（リクエストされた値をもとに作成）
-        $request->user()->posts()->create([
+        $post = $request->user()->posts()->create([
             'title'=>$request->title,
-            'category'=>$request->category,
             'content' => $request->content,
         ]);
+
+        // カテゴリーも保存。リレーション関係にある時はsaveメソッドを使う
+        $post->category()->create([
+            'category_name'=>$request->category,
+        ]);
+
 
         // 前のURLへリダイレクトさせる
         return redirect('/');
@@ -73,7 +80,7 @@ class PostsController extends Controller
         $comments=$post->comments()->get();
         $like_model = new Like;
 
-        $post = Post::withCount('likes')->findOrFail($post->id);
+        $post = Post::withCount('likes', 'comments')->findOrFail($post->id);
 
         return view('posts.show', compact('post', 'comments', 'like_model'));
     }
@@ -139,6 +146,12 @@ class PostsController extends Controller
         $like_model = new Like;
         //$postsを定義
         $posts = null;
+        //ログイン中のユーザーを取得
+        $me =  User::get_me();
+
+
+        $users_lanking = User::total_score('week')->sortByDesc('total');
+
 
         // 前期間
         if ($period == "all") {
@@ -172,6 +185,35 @@ class PostsController extends Controller
         }
 
 
-        return view('posts.trend', compact('posts', 'like_model'));
+        return view('posts.trend', compact('posts', 'like_model', 'users_lanking', 'me'));
+    }
+
+    public function timeline()
+    {
+        //ログイン中のユーザーを取得(サイドバーのプロフィールで使用する)
+        $me =  User::get_me();
+
+        // ログイン中のユーザーを取得
+        $user = User::withCount('posts', 'likes', 'followings')->findOrFail($me->id);
+        // ユーザーのランキングを取得（サイドバーのランキングで使用する）
+        $users_lanking = User::total_score('week')->sortByDesc('total');
+        // いいね機能に使う
+        $like_model = new Like;
+        // ユーザのフォロー一覧を取得
+        $followings = $user->followings;
+        // 投稿を格納するコレクション
+        $posts = collect([]);
+        // フォロー中のユーザーの投稿を$postsに追加する
+        foreach ($followings as $following) {
+            $a = $following->posts()->withCount('likes', 'comments')->get();
+            foreach ($a as $post) {
+                // コレクションの最後に追加する
+                $posts->push($post);
+            }
+        }
+        // 降順に並び替える
+        $posts = $posts->SortByDesc('created_at');
+
+        return view('posts/timeline', compact('user', 'posts', 'me', 'users_lanking', 'like_model'));
     }
 }

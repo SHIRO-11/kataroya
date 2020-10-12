@@ -13,6 +13,7 @@
 
         <div class='form-group'>
             {!! Form::label('profile_image','プロフィール写真') !!}
+            <img src="/storage/{{!empty($user->profile_image) ? 'avatar/'.$user->profile_image : 'images/no-image.jpg'}}" id="preview_profile_image">
             {!! Form::file('profile_image') !!}
         </div>
 

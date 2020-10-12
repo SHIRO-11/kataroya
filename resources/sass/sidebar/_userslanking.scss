@@ -1,12 +1,62 @@
-.sidebar-right {
-
     .user-lanking-wrapper {
         background-color: #fff;
         width: 100%;
 
-        img {
-            width: 50px;
-            height: 50px;
+        h4 {
+            font-size: 14px;
+            margin-bottom: 0;
+            padding: 10px;
+            text-align: center;
+
+            i {
+                color: #ffc400;
+            }
+        }
+
+        .user-lanking-one-wrapper {
+            border-bottom: 1px solid $border;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            img {
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+            }
+
+            .lanking-left {
+                position: relative;
+
+                &:hover .profile-hover {
+                    /*画像をホバーしている間は表示するようにします*/
+                    display: inline-block;
+
+                    @include lg {
+                        left: -150px !important;
+                    }
+
+                    @include md {
+                        left: -150px !important;
+                    }
+                }
+            }
+
+
+            .lanking-right {
+                text-align: center;
+
+                p {
+                    font-size: 14px;
+                    font-weight: bold;
+                    margin: 0px !important;
+                    line-height: 1;
+                }
+
+                .score {
+                    color: $gray-color;
+                }
+            }
         }
     }
-}

@@ -1,0 +1,41 @@
+.side-profile {
+    background-color: #fff;
+    margin-bottom: 20px;
+
+    .side-profile-img {
+        padding: 10px 0;
+        text-align: center;
+
+        img {
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+        }
+    }
+
+    .side-profile-status {
+        border-top: 1px solid $border;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-justify-content: center;
+        justify-content: center;
+
+        .side-profile-item {
+            padding: 5px;
+            flex: 1;
+            border-right: 1px solid $border;
+            text-align: center;
+
+            span {
+                display: block;
+                font-size: 10px;
+            }
+
+            &:last-child {
+                border-right: none;
+            }
+        }
+
+        .posts-counts {}
+    }
+}

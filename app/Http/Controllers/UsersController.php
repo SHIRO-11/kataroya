@@ -10,16 +10,18 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::orderBy('id', 'desc')->get();
-        $users_lanking = User::total_score('week')->sortByDesc('total');
-        return view('users.index', compact('users', 'users_lanking'));
+        $users = User::orderBy('id', 'desc')->paginate(1);
+        $users_lanking = User::total_score('week')->sortByDesc('total')->take(10);
+        // サイドバーのプロフィールで使う
+        $me =  User::get_me();
+        return view('users.index', compact('users', 'users_lanking', 'me'));
     }
 
     public function show($id)
     {
-        $user = User::withCount('posts', 'likes', 'followings')->findOrFail($id);
+        $user = User::withCount('posts', 'likes', 'followings', 'followers')->findOrFail($id);
+
         $posts = $user->posts()->orderBy('id', 'desc')->get();
-        
 
         return view('users.show', compact('user', 'posts'));
     }
@@ -52,10 +54,18 @@ class UsersController extends Controller
         $user->instagram_url=$request->instagram_url;
         $user->youtube_url=$request->youtube_url;
 
-        //画像をstorage/app/public/avatarの中に保存
-        $path = $request->file('profile_image')->store('public/avatar');
-        //basenameで画像の名前だけを保存。これをしないとpublic/avatar/画像名となってしまう。
-        $user->profile_image = basename($path);
+
+        if ($request->file('profile_image')) {
+            // 設定しているプロフィール画像の保存先を取得
+            $image ='storage/avatar/'.$user->profile_image;
+            // 設定していたプロフィール画像を削除
+            \File::delete($image);
+
+            //画像をstorage/app/public/avatarの中に保存
+            $path = $request->file('profile_image')->store('public/avatar');
+            //basenameで画像の名前だけを保存。これをしないとpublic/avatar/画像名となってしまう。
+            $user->profile_image = basename($path);
+        }
 
         $user->save();
 
@@ -67,28 +77,39 @@ class UsersController extends Controller
     // プロフィールページのいいね一覧
     public function likeslist($id)
     {
-        $user = User::withCount('posts', 'likes', 'followings')->findOrFail($id);
+        $user = User::withCount('posts', 'likes', 'followings', 'followers')->findOrFail($id);
 
         $likes = $user->likes()->orderBy('created_at', 'desc')->get();
 
         return view('users/likeslist', compact('user', 'likes'));
     }
 
+    // プロフィールページのフォロー中ユーザ一覧
     public function followings($id)
     {
-        $user = User::withCount('posts', 'likes', 'followings')->findOrFail($id);
-        
+        $user = User::withCount('posts', 'likes', 'followings', 'followers')->findOrFail($id);
 
         // ユーザのフォロー一覧を取得
-        $followings = $user->followings()->get();
+        $followings = $user->followings()->orderBy('pivot_created_at', 'desc')->get();
 
 
         return view('users/followings', compact('user', 'followings'));
     }
+    // プロフィールページのフォロワー一覧
+    public function followers($id)
+    {
+        $user = User::withCount('posts', 'likes', 'followings', 'followers')->findOrFail($id);
+
+        // ユーザのフォロー一覧を取得
+        $followers = $user->followers()->orderBy('pivot_created_at', 'desc')->get();
+
+
+        return view('users/followers', compact('user', 'followers'));
+    }
 
     public function lanking($period)
     {
-        $users_lanking = User::total_score($period)->sortByDesc('total');
+        $users_lanking = User::total_score($period)->sortByDesc('total')->take(10);
 
         //下記の記述でajaxに引数の値を返す
         return response()->json($users_lanking);

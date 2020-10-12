@@ -39,12 +39,7 @@
 <div class="modal js-modal">
     <div class="modal__bg js-modal-close"></div>
     <div class="modal__content">
-        <div class="row">
-            <div class="col-sm-12">
-                「投稿」するためにはログインする必要があります。
-                @include('layouts.login')
-            </div>
-        </div>
+            @include('layouts.modal_login',['content'=>'投稿'])
         <a class="js-modal-close" href="">閉じる</a>
     </div>
 </div>

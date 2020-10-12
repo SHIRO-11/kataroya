@@ -6,6 +6,8 @@ $(document).on('click', '.lanking-period', function () {
     var period = $this.data('period');
     var html = "";
     var nav = "";
+    var protocol = location.protocol;
+    var url = location.host;
 
         $.ajax({
                 headers: {
@@ -21,8 +23,8 @@ $(document).on('click', '.lanking-period', function () {
             // Ajaxリクエストが成功した場合
             .done(function (data) {
                 nav = `
-                <h4>ユーザーランキング</h4>
-                <ul class="nav nav-tabs nav-justified mb-3">
+                <h4><i class="fas fa-trophy"></i> ユーザーランキング</h4>
+                <ul class="nav nav-tabs nav-justified">
                      <li class="nav-item">
                         <a href="" class="lanking-period nav-link ${period=='week' ? 'active' : ''}" data-period="week">今週</a>
                     </li>
@@ -32,11 +34,10 @@ $(document).on('click', '.lanking-period', function () {
                     </li>
 
                     <li class="nav-item">
-                        <a href="" class="lanking-period nav-link ${period=='all' ? 'active' : ''}" data-period="all">全期間</a>
+                        <a href="" class="lanking-period nav-link ${period=='all' ? 'active' : ''}" data-period="all">総合</a>
                     </li>
                 </ul>
                 `
-                console.log(period);
                 let sort = _.orderBy(data, 'total', 'desc')
 
                 $.each(sort, function (index, value) { //dataの中身からvalueを取り出す
@@ -46,15 +47,19 @@ $(document).on('click', '.lanking-period', function () {
                     let total = value.total;
 
                     html += `
-                    <div class="user-lanking-oner-wrapper">
-                        <p><a href=""><img class="top-post-img"
+                    <div class="user-lanking-one-wrapper">
+                        <div class="lanking-left">
+                            <a href="${protocol}//${url}/users/${id}"><img class="top-post-img"
                                     src="/storage/${profile_image ? 'avatar/'+ profile_image : 'images/no-image.jpg'}">
-                        </p>
-                        <p class="user-lanking-name">${name}</p>
+                            </a>
+                            <a href="${protocol}//${url}/users/${id}" class="user-lanking-name">${name}</a>
+                        </div>
+                        <div class="lanking-right">
+                            <p class="lanking-score-count">${total}</p><p>score</p>
+                        </div>
 
                     </div>
                     `
-                    console.log(value);
                 })
                 user_lanking_wrapper.html(nav + html);
                 console.log('成功');

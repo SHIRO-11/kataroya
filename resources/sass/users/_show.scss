@@ -1,4 +1,4 @@
-#show-posts-list {
+.show-contents-wrapper {
     padding-top: 20px;
     background-color: #fff;
 
@@ -22,16 +22,16 @@
         padding: 15px 0 30px 0;
         border-bottom: 1px solid $border;
 
-        #show-user-post-category {
+        .show-user-post-category {
             font-size: 12px;
             margin-bottom: 5px;
         }
 
-        #show-post-title {
+        .show-post-title {
             font-size: 20px;
         }
 
-        #show-post-date {
+        .show-post-date {
             padding: 0 10px 0 0;
             color: #ababab;
             float: right;

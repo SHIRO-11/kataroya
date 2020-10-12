@@ -13,6 +13,11 @@
   margin-left: 10px;
 }
 
+.follow-unfollow-btn {
+  text-align: center;
+  margin-left: auto;
+}
+
 /*!
  * Bootstrap v4.5.2 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
@@ -10978,75 +10983,9 @@ body .category {
   height: 50px;
 }
 
-.main-wrapper .top-post-wrapper .top-post-one-wrapper .top-post-left a:hover + .top-profile-hover {
+.main-wrapper .top-post-wrapper .top-post-one-wrapper .top-post-left a:hover + .profile-hover {
   /*画像をホバーしている間は表示するようにします*/
   display: inline-block;
-}
-
-.main-wrapper .top-post-wrapper .top-post-one-wrapper .top-post-left .top-profile-hover {
-  display: none;
-  /*アニメーションを指定します*/
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-name: showballoon;
-          animation-name: showballoon;
-  width: 400px;
-  position: absolute;
-  top: 50px;
-  left: 0px;
-  z-index: 9999;
-  /*表示スタイルを指定します*/
-  padding: 5px;
-  border-radius: 5px;
-  color: #ababab;
-  background-color: #fff;
-  /*影をつけて見栄えを良くします*/
-  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 1px 0 0 rgba(255, 255, 255, 0.3), inset -1px 0 0 rgba(255, 255, 255, 0.3), inset 0 -1px 0 rgba(255, 255, 255, 0.2);
-}
-
-.main-wrapper .top-post-wrapper .top-post-one-wrapper .top-post-left .top-profile-hover:hover {
-  /*プロフィールboxをホバーしている間は表示するようにします*/
-  display: inline-block;
-}
-
-@-webkit-keyframes showballoon {
-  /*アニメーションを定義します*/
-  0% {
-    opacity: 0;
-    top: 30px;
-  }
-
-  100% {
-    /*表示するようにします*/
-    opacity: 1;
-    top: 50px;
-  }
-}
-
-@keyframes showballoon {
-  /*アニメーションを定義します*/
-  0% {
-    opacity: 0;
-    top: 30px;
-  }
-
-  100% {
-    /*表示するようにします*/
-    opacity: 1;
-    top: 50px;
-  }
-}
-
-.main-wrapper .top-post-wrapper .top-post-one-wrapper .top-post-left .top-profile-hover .top-post-img {
-  display: inline-block;
-}
-
-.main-wrapper .top-post-wrapper .top-post-one-wrapper .top-post-left .top-profile-hover .top-post-user {
-  display: inline-block;
-}
-
-.main-wrapper .top-post-wrapper .top-post-one-wrapper .top-post-left .top-profile-hover .top-post-user-introduction {
-  padding: 5px;
 }
 
 .main-wrapper .top-post-wrapper .top-post-one-wrapper .top-post-right {
@@ -11169,8 +11108,6 @@ body .category {
   padding: 0;
   top: 10px;
   height: 300px;
-  border: 1px solid #ebebeb;
-  background-color: #fff;
 }
 
 .side-bar-left a {
@@ -11194,25 +11131,17 @@ body .category {
 
 @media (min-width: 768px) and (max-width: 992px) {
   .side-bar-left {
-    top: 10px;
     position: static;
     height: 100%;
-  }
-
-  .side-bar-left a {
-    display: inline-block !important;
+    display: flex;
   }
 }
 
 @media (max-width: 768px) {
   .side-bar-left {
-    top: 10px;
     position: static;
     height: 100%;
-  }
-
-  .side-bar-left a {
-    display: inline-block !important;
+    display: flex;
   }
 }
 
@@ -11301,87 +11230,48 @@ body .category {
   text-align: center;
 }
 
-#profile-wrapper #profile #profile-counts {
+#profile-wrapper #profile #profile-counts-items {
   text-align: center;
   font-size: 16px;
+  display: flex;
 }
 
-#profile-wrapper #profile #profile-counts a {
+#profile-wrapper #profile #profile-counts-items a {
   color: #2ea6ff;
 }
 
-#profile-wrapper #profile #profile-counts .profile-active {
+#profile-wrapper #profile #profile-counts-items .profile-counts-item {
+  flex: 1;
+  border: 1px solid #2ea6ff;
+  border-radius: 3px;
+  margin: 10px 5px;
+}
+
+#profile-wrapper #profile #profile-counts-items .profile-counts-item:hover {
+  background-color: #2ea6ff;
+  color: #fff !important;
+}
+
+#profile-wrapper #profile #profile-counts-items .profile-counts-item:hover p {
+  color: #fff !important;
+}
+
+#profile-wrapper #profile #profile-counts-items .profile-counts-item .profile-number-item {
+  margin-bottom: 0;
+}
+
+#profile-wrapper #profile #profile-counts-items .profile-counts-item .profile-name-item {
+  font-size: 12px;
+  margin-bottom: 0;
+}
+
+#profile-wrapper #profile #profile-counts-items .profile-active {
   background-color: #2ea6ff !important;
   color: #fff !important;
 }
 
-#profile-wrapper #profile #profile-counts #profile-posts {
-  display: inline-block;
-  margin: 10px 15px;
-  width: 70px;
-  background-color: #fff;
-  border: 1px solid #2ea6ff;
-  border-radius: 3px;
-}
-
-#profile-wrapper #profile #profile-counts #profile-posts:hover {
-  background-color: #2ea6ff;
-  color: #fff;
-}
-
-#profile-wrapper #profile #profile-counts #profile-posts #profile-posts-count {
-  margin-bottom: 0;
-}
-
-#profile-wrapper #profile #profile-counts #profile-posts #profile-posts-name {
-  font-size: 12px;
-  margin-bottom: 0;
-}
-
-#profile-wrapper #profile #profile-counts #profile-likes {
-  display: inline-block;
-  margin: 10px 15px;
-  width: 70px;
-  background-color: #fff;
-  border-radius: 3px;
-  border: 1px solid #2ea6ff;
-}
-
-#profile-wrapper #profile #profile-counts #profile-likes:hover {
-  background-color: #2ea6ff;
-  color: #fff;
-}
-
-#profile-wrapper #profile #profile-counts #profile-likes #profile-likes-count {
-  margin-bottom: 0;
-}
-
-#profile-wrapper #profile #profile-counts #profile-likes #profile-likes-name {
-  font-size: 12px;
-  margin-bottom: 0;
-}
-
-#profile-wrapper #profile #profile-counts #profile-followers {
-  display: inline-block;
-  margin: 10px 15px;
-  width: 70px;
-  background-color: #fff;
-  border-radius: 3px;
-  border: 1px solid #2ea6ff;
-}
-
-#profile-wrapper #profile #profile-counts #profile-followers:hover {
-  background-color: #2ea6ff;
-  color: #fff;
-}
-
-#profile-wrapper #profile #profile-counts #profile-followers #profile-followers-count {
-  margin-bottom: 0;
-}
-
-#profile-wrapper #profile #profile-counts #profile-followers #profile-followers-name {
-  font-size: 12px;
-  margin-bottom: 0;
+#profile-wrapper #profile #profile-counts-items .profile-active p {
+  color: #fff !important;
 }
 
 .modal {
@@ -11420,7 +11310,7 @@ body .category {
   font-size: 28px;
 }
 
-.js-modal-open {
+.js-modal-open-comment {
   width: 60px;
   height: 60px;
   background: #888888;
@@ -11431,7 +11321,7 @@ body .category {
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
 }
 
-.js-modal-open i {
+.js-modal-open-comment i {
   font-size: 200%;
   position: fixed;
   color: white;
@@ -11460,54 +11350,17 @@ body .category {
   letter-spacing: 0;
 }
 
-#show-posts-list {
-  padding-top: 20px;
-  background-color: #fff;
-}
-
-@media (min-width: 1120px) {
-  #show-posts-list {
-    margin-left: 20px;
-  }
-}
-
-@media (min-width: 992px) and (max-width: 1119px) {
-  #show-posts-list {
-    margin-left: 20px;
-  }
-}
-
-#show-posts-list h2 {
-  font-size: 16px;
-}
-
-#show-posts-list h2 i {
-  color: #2ea6ff;
-}
-
-#show-posts-list .show-posts-substance {
-  padding: 15px 0 30px 0;
-  border-bottom: 1px solid #ebebeb;
-}
-
-#show-posts-list .show-posts-substance #show-user-post-category {
-  font-size: 12px;
-  margin-bottom: 5px;
-}
-
-#show-posts-list .show-posts-substance #show-post-title {
-  font-size: 20px;
-}
-
-#show-posts-list .show-posts-substance #show-post-date {
-  padding: 0 10px 0 0;
-  color: #ababab;
-  float: right;
-}
-
 .profile-edit {
   background-color: white;
   padding: 30px;
+}
+
+.profile-edit #preview_profile_image {
+  width: 100px;
+  height: 100px;
+  display: block;
+  border-radius: 50%;
+  margin-bottom: 10px;
 }
 
 .user-index-wrapper {
@@ -11532,61 +11385,9 @@ body .category {
   height: 50px;
 }
 
-.user-index-wrapper .user-index-one-wrapper .user-index-left a:hover + .top-profile-hover {
+.user-index-wrapper .user-index-one-wrapper .user-index-left a:hover + .profile-hover {
   /*画像をホバーしている間は表示するようにします*/
   display: inline-block;
-}
-
-.user-index-wrapper .user-index-one-wrapper .user-index-left .top-profile-hover {
-  display: none;
-  /*アニメーションを指定します*/
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-name: showballoon;
-          animation-name: showballoon;
-  width: 400px;
-  position: absolute;
-  top: 50px;
-  left: 0px;
-  z-index: 9999;
-  /*表示スタイルを指定します*/
-  padding: 5px;
-  border-radius: 5px;
-  color: #ababab;
-  background-color: #fff;
-  /*影をつけて見栄えを良くします*/
-  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 1px 0 0 rgba(255, 255, 255, 0.3), inset -1px 0 0 rgba(255, 255, 255, 0.3), inset 0 -1px 0 rgba(255, 255, 255, 0.2);
-}
-
-.user-index-wrapper .user-index-one-wrapper .user-index-left .top-profile-hover:hover {
-  /*プロフィールboxをホバーしている間は表示するようにします*/
-  display: inline-block;
-}
-
-@keyframes showballoon {
-  /*アニメーションを定義します*/
-  0% {
-    opacity: 0;
-    top: 30px;
-  }
-
-  100% {
-    /*表示するようにします*/
-    opacity: 1;
-    top: 50px;
-  }
-}
-
-.user-index-wrapper .user-index-one-wrapper .user-index-left .top-profile-hover .top-post-img {
-  display: inline-block;
-}
-
-.user-index-wrapper .user-index-one-wrapper .user-index-left .top-profile-hover .top-post-user {
-  display: inline-block;
-}
-
-.user-index-wrapper .user-index-one-wrapper .user-index-left .top-profile-hover .top-post-user-introduction {
-  padding: 5px;
 }
 
 .user-index-wrapper .user-index-one-wrapper .user-index-right {
@@ -11609,13 +11410,379 @@ body .category {
   padding: 0;
 }
 
-.sidebar-right .user-lanking-wrapper {
+.user-lanking-wrapper {
   background-color: #fff;
   width: 100%;
 }
 
-.sidebar-right .user-lanking-wrapper img {
+.user-lanking-wrapper h4 {
+  font-size: 14px;
+  margin-bottom: 0;
+  padding: 10px;
+  text-align: center;
+}
+
+.user-lanking-wrapper h4 i {
+  color: #ffc400;
+}
+
+.user-lanking-wrapper .user-lanking-one-wrapper {
+  border-bottom: 1px solid #ebebeb;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-lanking-wrapper .user-lanking-one-wrapper img {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.user-lanking-wrapper .user-lanking-one-wrapper .lanking-left {
+  position: relative;
+}
+
+.user-lanking-wrapper .user-lanking-one-wrapper .lanking-left:hover .profile-hover {
+  /*画像をホバーしている間は表示するようにします*/
+  display: inline-block;
+}
+
+@media (min-width: 1120px) {
+  .user-lanking-wrapper .user-lanking-one-wrapper .lanking-left:hover .profile-hover {
+    left: -150px !important;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1119px) {
+  .user-lanking-wrapper .user-lanking-one-wrapper .lanking-left:hover .profile-hover {
+    left: -150px !important;
+  }
+}
+
+.user-lanking-wrapper .user-lanking-one-wrapper .lanking-right {
+  text-align: center;
+}
+
+.user-lanking-wrapper .user-lanking-one-wrapper .lanking-right p {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0px !important;
+  line-height: 1;
+}
+
+.user-lanking-wrapper .user-lanking-one-wrapper .lanking-right .score {
+  color: #ababab;
+}
+
+.side-profile {
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+
+.side-profile .side-profile-img {
+  padding: 10px 0;
+  text-align: center;
+}
+
+.side-profile .side-profile-img img {
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+}
+
+.side-profile .side-profile-status {
+  border-top: 1px solid #ebebeb;
+  display: flex;
+  justify-content: center;
+}
+
+.side-profile .side-profile-status .side-profile-item {
+  padding: 5px;
+  flex: 1;
+  border-right: 1px solid #ebebeb;
+  text-align: center;
+}
+
+.side-profile .side-profile-status .side-profile-item span {
+  display: block;
+  font-size: 10px;
+}
+
+.side-profile .side-profile-status .side-profile-item:last-child {
+  border-right: none;
+}
+
+.show-contents-wrapper {
+  padding-top: 20px;
+  background-color: #fff;
+}
+
+@media (min-width: 1120px) {
+  .show-contents-wrapper {
+    margin-left: 20px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1119px) {
+  .show-contents-wrapper {
+    margin-left: 20px;
+  }
+}
+
+.show-contents-wrapper h2 {
+  font-size: 16px;
+}
+
+.show-contents-wrapper h2 i {
+  color: #2ea6ff;
+}
+
+.show-contents-wrapper .show-posts-substance {
+  padding: 15px 0 30px 0;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.show-contents-wrapper .show-posts-substance .show-user-post-category {
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.show-contents-wrapper .show-posts-substance .show-post-title {
+  font-size: 20px;
+}
+
+.show-contents-wrapper .show-posts-substance .show-post-date {
+  padding: 0 10px 0 0;
+  color: #ababab;
+  float: right;
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .sidebar-right {
+    padding: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar-right {
+    padding: 0;
+  }
+}
+
+.profile-hover {
+  display: none;
+  /*アニメーションを指定します*/
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-name: showballoon;
+          animation-name: showballoon;
+  width: 400px;
+  position: absolute;
+  top: 50px;
+  left: 0px;
+  z-index: 9999;
+  /*表示スタイルを指定します*/
+  padding: 5px;
+  border-radius: 5px;
+  color: #ababab;
+  background-color: #fff;
+  /*影をつけて見栄えを良くします*/
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 1px 0 0 rgba(255, 255, 255, 0.3), inset -1px 0 0 rgba(255, 255, 255, 0.3), inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.profile-hover:hover {
+  /*プロフィールboxをホバーしている間は表示するようにします*/
+  display: inline-block;
+}
+
+@-webkit-keyframes showballoon {
+  /*アニメーションを定義します*/
+  0% {
+    opacity: 0;
+    top: 30px;
+  }
+
+  100% {
+    /*表示するようにします*/
+    opacity: 1;
+    top: 50px;
+  }
+}
+
+@keyframes showballoon {
+  /*アニメーションを定義します*/
+  0% {
+    opacity: 0;
+    top: 30px;
+  }
+
+  100% {
+    /*表示するようにします*/
+    opacity: 1;
+    top: 50px;
+  }
+}
+
+.profile-hover .profile-hover-img-name {
+  display: flex;
+  align-items: center;
+}
+
+.profile-hover .profile-hover-img-name .hover-profile-img {
+  border-radius: 50%;
   width: 50px;
   height: 50px;
+}
+
+.profile-hover .profile-hover-info-items {
+  border-top: 1px solid #ebebeb;
+  display: flex;
+  justify-content: center;
+}
+
+.profile-hover .profile-hover-info-items .profile-hover-info-item {
+  padding: 5px;
+  flex: 1;
+  border-right: 1px solid #ebebeb;
+  text-align: center;
+}
+
+.profile-hover .profile-hover-info-items .profile-hover-info-item span {
+  display: block;
+  font-size: 10px;
+}
+
+.profile-hover .profile-hover-info-items .profile-hover-info-item:last-child {
+  border-right: none;
+}
+
+.profile-hover .hover-profile-user-introduction {
+  padding: 5px;
+}
+
+.show-contents-wrapper {
+  background-color: white;
+  margin-bottom: 10px;
+}
+
+.show-contents-wrapper .user-index-one-wrapper {
+  border-bottom: 1px solid #ebebeb;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.show-contents-wrapper .user-index-one-wrapper .user-index-left {
+  vertical-align: middle;
+}
+
+.show-contents-wrapper .user-index-one-wrapper .user-index-left a .top-post-img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.show-contents-wrapper .user-index-one-wrapper .user-index-left a:hover + .profile-hover {
+  /*画像をホバーしている間は表示するようにします*/
+  display: inline-block;
+}
+
+.show-contents-wrapper .user-index-one-wrapper .user-index-right {
+  padding: 10px 5px;
+}
+
+.show-contents-wrapper .user-index-one-wrapper .user-index-right p {
+  margin: 0;
+}
+
+.show-contents-wrapper .user-index-one-wrapper .user-index-right .user-name {
+  padding: 0;
+  margin: 0;
+  font-size: 18px;
+}
+
+.show-contents-wrapper .user-index-one-wrapper .user-index-right .user-introduction {
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+.guest-head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2ea6ff;
+  padding: 20px 50px;
+  margin-bottom: 30px;
+}
+
+.guest-head .guest-head-contents {
+  flex: 2;
+}
+
+.guest-head .guest-head-contents .guest-head-title {
+  font-size: 34px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.guest-head .guest-head-contents .guest-head-content {
+  font-size: 16px;
+  line-height: 1.5rem;
+  color: #fff;
+}
+
+.guest-head .guest-head-login {
+  margin-left: 20px;
+  flex: 1;
+}
+
+.guest-head .guest-head-login .form-group {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.guest-head .guest-head-login .form-group label {
+  flex: 1;
+  text-align: right;
+  color: #fff;
+}
+
+.guest-head .guest-head-login .form-group .form-control {
+  flex: 2;
+  margin-left: 15px;
+}
+
+.guest-head .guest-head-login .already-register {
+  margin-top: 15px;
+  color: #fff;
+}
+
+.guest-head .guest-head-login .already-register a {
+  color: #fff;
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .guest-head .guest-head-title {
+    font-size: 28px !important;
+  }
+
+  .guest-head .guest-head-login {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .guest-head .guest-head-title {
+    font-size: 28px !important;
+  }
+
+  .guest-head .guest-head-login {
+    display: none;
+  }
 }
 

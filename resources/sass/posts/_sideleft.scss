@@ -4,8 +4,6 @@
     padding: 0;
     top: 10px;
     height: 300px;
-    border: 1px solid $border;
-    background-color: #fff;
 
     a {
         border-bottom: 1px solid $border;
@@ -29,23 +27,15 @@
     }
 
     @include sm {
-        top: 10px;
         position: static;
         height: 100%;
-
-        a {
-            display: inline-block !important;
-        }
+        display: flex;
     }
 
     @include xs {
-        top: 10px;
         position: static;
         height: 100%;
-
-        a {
-            display: inline-block !important;
-        }
+        display: flex;
     }
 }
 

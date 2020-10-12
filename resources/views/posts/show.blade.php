@@ -32,8 +32,8 @@
                         </div>
                     </div>
                 @endguest
-                <p class="reply-marke"><i class="fas fa-comments"></i></p>
-                <p id='show-post-user'><a href="{{route('users.show',['user'=>$post->user->id])}}"><img id="show-post-img" src="/storage/avatar/{{$post->user->profile_image}}"> {{$post->user->name}}</a>
+                <p class="reply-marke"><i class="fas fa-comments"></i> {{$post->comments_count}}</p>
+                <p id='show-post-user'><a href="{{route('users.show',['user'=>$post->user->id])}}"><img id="show-post-img" src="/storage/{{!empty($post->user->profile_image) ? 'avatar/'.$post->user->profile_image : 'images/no-image.jpg'}}"> {{$post->user->name}}</a>
                     さんの投稿</p>
                 <p id="show-post-date"><i class="fas fa-calendar-alt"></i> {{$post->created_at}}</p>
             </div>
@@ -50,7 +50,7 @@
 </div>
 
 <div class="content">
-    <a class="js-modal-open" href=""><i class="fas fa-plus"></i></a>
+    <a class="js-modal-open-comment" href=""><i class="fas fa-plus"></i></a>
 </div>
 <div class="modal js-modal">
     <div class="modal__bg js-modal-close"></div>
@@ -61,7 +61,7 @@
                 {!! Form::open(['route' => 'comments.store']) !!}
                 <div class="form-group">
                     {!! Form::label('name', '名前') !!}
-                    {!! Form::text('name', old('name'), ['class' => 'form-control']) !!}
+                    {!! Form::text('name',old('name','名無し'), ['class' => 'form-control']) !!}
                 </div>
         
                 <div class="form-group">
@@ -73,7 +73,7 @@
                 {!! Form::close() !!}
             </div>
         </div>
-        <a class="js-modal-close" href="">閉じる</a>
+        <a class="js-modal-close-comment" href="">閉じる</a>
     </div>
 </div>
 @endsection 

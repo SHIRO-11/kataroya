@@ -1,4 +1,12 @@
 .profile-edit {
     background-color: white;
     padding: 30px;
+
+    #preview_profile_image {
+        width: 100px;
+        height: 100px;
+        display: block;
+        border-radius: 50%;
+        margin-bottom: 10px;
+    }
 }

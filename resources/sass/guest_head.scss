@@ -1,0 +1,80 @@
+.guest-head {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $main-color;
+    padding: 20px 50px;
+    margin-bottom: 30px;
+
+    .guest-head-contents {
+        flex: 2;
+
+        .guest-head-title {
+            font-size: 34px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .guest-head-content {
+            font-size: 16px;
+            line-height: 1.5rem;
+            color: #fff;
+        }
+    }
+
+    .guest-head-login {
+        margin-left: 20px;
+        flex: 1;
+
+        .form-group {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+
+            label {
+                flex: 1;
+                text-align: right;
+                color: #fff;
+            }
+
+            .form-control {
+                flex: 2;
+                margin-left: 15px;
+            }
+        }
+
+        .already-register {
+            margin-top: 15px;
+            color: #fff;
+
+            a {
+                color: #fff;
+            }
+        }
+    }
+
+    @include lg {}
+
+    @include md {}
+
+    @include sm {
+        .guest-head-title {
+            font-size: 28px !important;
+        }
+
+        .guest-head-login {
+            display: none;
+        }
+    }
+
+    @include xs {
+        .guest-head-title {
+            font-size: 28px !important;
+        }
+
+        .guest-head-login {
+            display: none;
+        }
+    }
+}

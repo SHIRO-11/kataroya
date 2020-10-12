@@ -78,15 +78,10 @@
                 text-align: center;
             }
 
-            #profile-counts {
+            #profile-counts-items {
                 text-align: center;
                 font-size: 16px;
-                $margin: 10px 15px;
-                $name-font-size: 12px;
-                $width: 70px;
-                $back: #fff;
-                $border: 1px solid $main-color;
-                $radius: 3px;
+                display: flex;
                 $hover-back: $main-color;
                 $hover-color: #fff;
 
@@ -94,78 +89,37 @@
                     color: #2ea6ff;
                 }
 
+                .profile-counts-item {
+                    flex: 1;
+                    border: 1px solid $main-color;
+                    border-radius: 3px;
+                    margin: 10px 5px;
+
+                    &:hover {
+                        background-color: $hover-back;
+                        color: $hover-color !important;
+
+                        p {
+                            color: $hover-color !important;
+                        }
+                    }
+
+                    .profile-number-item {
+                        margin-bottom: 0;
+                    }
+
+                    .profile-name-item {
+                        font-size: 12px;
+                        margin-bottom: 0;
+                    }
+                }
+
                 .profile-active {
                     background-color: $hover-back !important;
                     color: $hover-color !important;
-                }
 
-
-                #profile-posts {
-                    display: inline-block;
-                    margin: $margin;
-                    width: $width;
-                    background-color: $back;
-                    border: $border;
-                    border-radius: $radius;
-
-                    &:hover {
-                        background-color: $hover-back;
-                        color: $hover-color;
-                    }
-
-                    #profile-posts-count {
-                        margin-bottom: 0;
-                    }
-
-                    #profile-posts-name {
-                        font-size: $name-font-size;
-                        margin-bottom: 0;
-                    }
-                }
-
-                #profile-likes {
-                    display: inline-block;
-                    margin: $margin;
-                    width: $width;
-                    background-color: $back;
-                    border-radius: $radius;
-                    border: $border;
-
-                    &:hover {
-                        background-color: $hover-back;
-                        color: $hover-color;
-                    }
-
-                    #profile-likes-count {
-                        margin-bottom: 0;
-                    }
-
-                    #profile-likes-name {
-                        font-size: $name-font-size;
-                        margin-bottom: 0;
-                    }
-                }
-
-                #profile-followers {
-                    display: inline-block;
-                    margin: $margin;
-                    width: $width;
-                    background-color: $back;
-                    border-radius: $radius;
-                    border: $border;
-
-                    &:hover {
-                        background-color: $hover-back;
-                        color: $hover-color;
-                    }
-
-                    #profile-followers-count {
-                        margin-bottom: 0;
-                    }
-
-                    #profile-followers-name {
-                        font-size: $name-font-size;
-                        margin-bottom: 0;
+                    p {
+                        color: $hover-color !important;
                     }
                 }
             }

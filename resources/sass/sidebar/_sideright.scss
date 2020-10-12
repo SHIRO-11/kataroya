@@ -1,0 +1,10 @@
+.sidebar-right {
+
+    @include sm {
+        padding: 0;
+    }
+
+    @include xs {
+        padding: 0;
+    }
+}

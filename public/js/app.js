@@ -37257,6 +37257,80 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/js/ajaxfollow.js":
+/*!************************************!*\
+  !*** ./resources/js/ajaxfollow.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(function () {
+  var id;
+  var html;
+  var follow_unfollow_btn = $('.follow-unfollow-btn');
+  $(document).on('click', '.follow-btn', function () {
+    var $this = $(this); // クリックした要素の親要素を取得
+
+    var parent = $this.parent();
+    id = $this.data('id');
+    $.ajax({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      url: '/users/' + id + '/follow',
+      type: 'Post',
+      data: {
+        'id': id
+      }
+    }) // Ajaxリクエストが成功した場合
+    .done(function (data) {
+      // 書き換える内容
+      html = "<a href=\"\" data-id=\"".concat(id, "\" class=\"btn-sm btn-danger btn-block unfollow-btn\">\u30A2\u30F3\u30D5\u30A9\u30ED\u30FC</a>"); // 親要素の中身を書き換える
+
+      parent.html(html);
+      console.log('成功');
+    }) // Ajaxリクエストが失敗した場合
+    .fail(function (data, xhr, err) {
+      console.log('エラー');
+      console.log(err);
+      console.log(xhr);
+    });
+    return false;
+  });
+  $(document).on('click', '.unfollow-btn', function () {
+    var $this = $(this); // クリックした要素の親要素を取得
+
+    var parent = $this.parent();
+    id = $this.data('id');
+    $.ajax({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      url: '/users/' + id + '/unfollow',
+      type: 'Post',
+      data: {
+        'id': id,
+        '_method': 'DELETE'
+      }
+    }) // Ajaxリクエストが成功した場合
+    .done(function (data) {
+      // 書き換える内容
+      html = "<a href=\"\" data-id=\"".concat(id, "\" class=\"btn-sm btn-primary btn-block follow-btn\">\u30D5\u30A9\u30ED\u30FC</a>"); // 親要素の中身を書き換える
+
+      parent.html(html);
+      console.log('成功');
+    }) // Ajaxリクエストが失敗した場合
+    .fail(function (data, xhr, err) {
+      console.log('エラー');
+      console.log(err);
+      console.log(xhr);
+    });
+    return false;
+  });
+});
+
+/***/ }),
+
 /***/ "./resources/js/ajaxlike.js":
 /*!**********************************!*\
   !*** ./resources/js/ajaxlike.js ***!
@@ -37310,6 +37384,10 @@ __webpack_require__(/*! ./modal.js */ "./resources/js/modal.js");
 __webpack_require__(/*! ./ajaxlike.js */ "./resources/js/ajaxlike.js");
 
 __webpack_require__(/*! ./lanking */ "./resources/js/lanking.js");
+
+__webpack_require__(/*! ./ajaxfollow */ "./resources/js/ajaxfollow.js");
+
+__webpack_require__(/*! ./profile_image */ "./resources/js/profile_image.js");
 
 /***/ }),
 
@@ -37372,6 +37450,8 @@ $(function () {
     var period = $this.data('period');
     var html = "";
     var nav = "";
+    var protocol = location.protocol;
+    var url = location.host;
     $.ajax({
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -37383,8 +37463,7 @@ $(function () {
       }
     }) // Ajaxリクエストが成功した場合
     .done(function (data) {
-      nav = "\n                <h4>\u30E6\u30FC\u30B6\u30FC\u30E9\u30F3\u30AD\u30F3\u30B0</h4>\n                <ul class=\"nav nav-tabs nav-justified mb-3\">\n                     <li class=\"nav-item\">\n                        <a href=\"\" class=\"lanking-period nav-link ".concat(period == 'week' ? 'active' : '', "\" data-period=\"week\">\u4ECA\u9031</a>\n                    </li>\n\n                    <li class=\"nav-item\">\n                        <a href=\"\" class=\"lanking-period nav-link ").concat(period == 'month' ? 'active' : '', "\" data-period=\"month\">\u4ECA\u6708</a>\n                    </li>\n\n                    <li class=\"nav-item\">\n                        <a href=\"\" class=\"lanking-period nav-link ").concat(period == 'all' ? 'active' : '', "\" data-period=\"all\">\u5168\u671F\u9593</a>\n                    </li>\n                </ul>\n                ");
-      console.log(period);
+      nav = "\n                <h4><i class=\"fas fa-trophy\"></i> \u30E6\u30FC\u30B6\u30FC\u30E9\u30F3\u30AD\u30F3\u30B0</h4>\n                <ul class=\"nav nav-tabs nav-justified\">\n                     <li class=\"nav-item\">\n                        <a href=\"\" class=\"lanking-period nav-link ".concat(period == 'week' ? 'active' : '', "\" data-period=\"week\">\u4ECA\u9031</a>\n                    </li>\n\n                    <li class=\"nav-item\">\n                        <a href=\"\" class=\"lanking-period nav-link ").concat(period == 'month' ? 'active' : '', "\" data-period=\"month\">\u4ECA\u6708</a>\n                    </li>\n\n                    <li class=\"nav-item\">\n                        <a href=\"\" class=\"lanking-period nav-link ").concat(period == 'all' ? 'active' : '', "\" data-period=\"all\">\u7DCF\u5408</a>\n                    </li>\n                </ul>\n                ");
 
       var sort = _.orderBy(data, 'total', 'desc');
 
@@ -37394,8 +37473,7 @@ $(function () {
         var profile_image = value.profile_image;
         var name = value.name;
         var total = value.total;
-        html += "\n                    <div class=\"user-lanking-oner-wrapper\">\n                        <p><a href=\"\"><img class=\"top-post-img\"\n                                    src=\"/storage/".concat(profile_image ? 'avatar/' + profile_image : 'images/no-image.jpg', "\">\n                        </p>\n                        <p class=\"user-lanking-name\">").concat(name, "</p>\n\n                    </div>\n                    ");
-        console.log(value);
+        html += "\n                    <div class=\"user-lanking-one-wrapper\">\n                        <div class=\"lanking-left\">\n                            <a href=\"".concat(protocol, "//").concat(url, "/users/").concat(id, "\"><img class=\"top-post-img\"\n                                    src=\"/storage/").concat(profile_image ? 'avatar/' + profile_image : 'images/no-image.jpg', "\">\n                            </a>\n                            <a href=\"").concat(protocol, "//").concat(url, "/users/").concat(id, "\" class=\"user-lanking-name\">").concat(name, "</a>\n                        </div>\n                        <div class=\"lanking-right\">\n                            <p class=\"lanking-score-count\">").concat(total, "</p><p>score</p>\n                        </div>\n\n                    </div>\n                    ");
       });
       user_lanking_wrapper.html(nav + html);
       console.log('成功');
@@ -37427,18 +37505,26 @@ $(function () {
   $('.js-modal-close').on('click', function () {
     $('.js-modal').fadeOut();
     return false;
-  });
-  $('.js-modal-open').on('click', function () {
+  }); //コメントの+マークを押したときの処理
+
+  $(document).on('click', '.js-modal-open-comment', function () {
     $('.js-modal').fadeIn();
     return false;
   });
-  $('.js-modal-close').on('click', function () {
+  $('.js-modal-close-comment').on('click', function () {
     $('.js-modal').fadeOut();
+    return false;
+  }); //タイムラインの+マークを押したときの処理
+
+  $('.js-modal-open-commons').on('click', function () {
+    $('.js-modal-commons').fadeIn();
+    return false;
+  });
+  $('.js-modal-close-commons').on('click', function () {
+    $('.js-modal-commons').fadeOut();
     return false;
   }); // ゲストユーザがハートマークを押したときの処理
 
-  2;
-  3;
   $(document).on('click', '.js-modal-open-heart', function () {
     $('.js-modal-heart').fadeIn();
     return false;
@@ -37447,6 +37533,32 @@ $(function () {
     $('.js-modal-heart').fadeOut();
     return false;
   });
+});
+
+/***/ }),
+
+/***/ "./resources/js/profile_image.js":
+/*!***************************************!*\
+  !*** ./resources/js/profile_image.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(document).on("change", "#profile_image", function (e) {
+  var reader;
+
+  if (e.target.files.length) {
+    reader = new FileReader();
+
+    reader.onload = function (e) {
+      var userThumbnail;
+      userThumbnail = document.getElementById('preview_profile_image');
+      console.log(userThumbnail);
+      userThumbnail.setAttribute('src', e.target.result);
+    };
+
+    return reader.readAsDataURL(e.target.files[0]);
+  }
 });
 
 /***/ }),

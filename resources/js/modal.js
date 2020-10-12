@@ -9,18 +9,27 @@ $(function () {
         return false;
     });
 
-    $('.js-modal-open').on('click', function () {
+    //コメントの+マークを押したときの処理
+    $(document).on('click', '.js-modal-open-comment', function () {
         $('.js-modal').fadeIn();
         return false;
     });
-    $('.js-modal-close').on('click', function () {
+    $('.js-modal-close-comment').on('click', function () {
         $('.js-modal').fadeOut();
         return false;
     });
 
+    //タイムラインの+マークを押したときの処理
+    $('.js-modal-open-commons').on('click', function () {
+        $('.js-modal-commons').fadeIn();
+        return false;
+    });
+    $('.js-modal-close-commons').on('click', function () {
+        $('.js-modal-commons').fadeOut();
+        return false;
+    });
+
     // ゲストユーザがハートマークを押したときの処理
-    2
-    3
     $(document).on('click', '.js-modal-open-heart', function () {
         $('.js-modal-heart').fadeIn();
         return false;

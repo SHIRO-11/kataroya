@@ -23,6 +23,12 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
+    // Categoryモデルとのリレーション
+    public function category()
+    {
+        return $this->hasOne(Category::class);
+    }
+
     public function textLimit($content)
     {
         //文字数の上限

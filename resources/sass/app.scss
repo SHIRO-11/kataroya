@@ -31,9 +31,6 @@
 // モーダルウインドウのページ
 @import 'modal';
 
-//ユーザーのshow
-@import 'users/show';
-
 //ユーザーのedit
 @import 'users/edit';
 
@@ -42,4 +39,20 @@
 
 // サイドバー右
 // ランキング
-@import 'sidebar/userslanking'
+@import 'sidebar/userslanking';
+
+// プロフィール
+@import 'sidebar/sideprofile';
+
+//ユーザーshow
+@import 'users/show';
+
+//ユーザーshow
+@import 'sidebar/sideright';
+
+//hover時に現れるプロフィール
+@import 'profile_hover';
+
+@import 'users/followings';
+
+@import 'guest_head'

@@ -3,40 +3,33 @@
 namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Carbon\Carbon; //カーボンを使用する
+use App\Notifications\PasswordResetNotification;
 
 class User extends Authenticatable
 {
     use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'name', 'email', 'password',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password', 'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new PasswordResetNotification($token));
+    }
 
     // ユーザーの投稿
     public function posts()
@@ -214,5 +207,33 @@ class User extends Authenticatable
             }
         }
         return $users;
+    }
+
+    public static function get_me()
+    {
+        if (Auth::check()) {
+            $total_score = 0;
+            //ログイン中のユーザーを取得
+            $id = Auth::id();
+            $me = User::withCount('likes', 'followers', 'posts')->findOrFail($id);
+
+            //投稿数
+            $posts_points = $me->posts_count;
+            // フォロワー数
+            $followers_points = $me->followers_count;
+            // 投稿数+フォロワー数
+            $total_score += $posts_points + $followers_points;
+
+            // 投稿についている「いいね」と「コメント」の数
+            $posts = $me->posts()->withCount('likes', 'comments')->get();
+            foreach ($posts as $post) {
+                $total_score += $post->likes_count;
+                $total_score += $post->comments_count;
+            }
+            // ユーザーインスタンスにtotalを追加
+            $me['total'] = $total_score;
+
+            return $me;
+        }
     }
 }

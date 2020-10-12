@@ -31,11 +31,20 @@
         .comment-form {
             font-size: 28px;
         }
+
+        .form-group {
+
+            label {}
+
+            .form-control {}
+        }
     }
 
 }
 
-.js-modal-open {
+
+
+.js-modal-open-comment {
     width: 60px;
     height: 60px;
     background: #888888;

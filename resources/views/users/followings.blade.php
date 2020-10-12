@@ -4,17 +4,22 @@
 <div class="row">
     @include('layouts.profile',['user'=>$user])
 
-    <div class='col-sm-12 col-md-7' id="show-posts-list">
-        <h2><i class="fas fa-clipboard-list"></i> フォローしているユーザーの投稿一覧</h2>
-        @foreach ($followings as $following)
-        @foreach ($following->posts as $post)
-        <div class="show-posts-substance">
-            <p class="category" id='show-user-post-category'><i class="fas fa-tags"></i> {{$post->category}}</p>
-            <h2 id="show-post-title"><a
-                    href="{{route('posts.show',['post'=>$post->id])}}">{{$post->title}}</a></h2>
-            <p id="show-post-date"><i class="fas fa-calendar-alt"></i> {{$post->created_at}}</p>
+    <div class="col-sm-12 col-md-7 show-contents-wrapper">
+        <h2><i class="fas fa-clipboard-list"></i> フォロー中のユーザー一覧</h2>
+        @foreach ($followings as $user)
+        <div class="user-index-one-wrapper">
+            <div class="user-index-left">
+                <a href="{{route('users.show',['user'=>$user->id])}}"><img class="top-post-img"
+                        src="/storage/{{!empty($user->profile_image) ? 'avatar/'.$user->profile_image : 'images/no-image.jpg'}}"></a>
+                @include('commons.profile_hover')
+    
+            </div>
+            <div class="user-index-right">
+                <h2 class="user-name"><a href="{{route('users.show',['user'=>$user->id])}}">{{$user->name}}</a>
+                </h2>
+                <p class="user-introduction">{{$user->introduction}}</p>
+            </div>
         </div>
-        @endforeach
         @endforeach
     </div>
 </div>

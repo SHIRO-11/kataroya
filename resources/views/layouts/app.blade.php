@@ -23,10 +23,19 @@
 </head>
 <body>
     @include('layouts.navbar')
+    @include('layouts.guest_head')
     <div class="container">
         {{-- エラーメッセージ --}}
         @include('layouts.error')
         @yield('content')
+
+        <div class="modal js-modal-commons">
+            <div class="modal__bg js-modal-close-commons"></div>
+            <div class="modal__content">
+                @include('layouts.modal_login',['content'=>'タイムラインを見る'])
+                <a class="js-modal-close-commons" href="">閉じる</a>
+            </div>
+        </div>
     </div>
 </body>
 </html>
