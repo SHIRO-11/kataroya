@@ -23,3 +23,11 @@ $gray-color:#ababab;
     text-align: center;
     margin-left: auto;
 }
+
+.navbar {
+    .search-box {
+        display: inline-block;
+        width: auto;
+        height: 30px;
+    }
+}

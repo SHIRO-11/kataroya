@@ -16,11 +16,14 @@ Route::get('/', 'PostsController@index')->name('posts.index');
 Route::resource('comments', 'CommentsController', ['only' => ['store','show','index']]);
 Route::resource('users', 'UsersController');
 Route::get('users/lanking/{period}', 'UsersController@lanking')->name('users.lanking');
+Route::get('categories', 'CategoriesController@index')->name('categories.index');
+Route::get('categories/{category}', 'CategoriesController@show')->name('categories.show');
+
 
 
 Route::group(['prefix' => 'posts'], function () {
-    Route::get('category/{category}', 'PostsController@category')->name('posts.category');
     Route::get('trend/{period}', 'PostsController@trend')->name('posts.trend');
+    Route::get('search', 'PostsController@search')->name('posts.search');
     Route::group(['middleware' => ['auth']], function () {
         Route::get('timeline', 'PostsController@timeline')->name('posts.timeline');
     });

@@ -5,9 +5,12 @@
     <div class="col-md-8">
         <div class="show-post-wrapper">
             <div id="show-main-post-wrapper">
-                <p class="category" id='show-post-category'><i class="fas fa-tags"></i> {{$post->category}}</p>
+                <p class="category" id='show-post-category'><i class="fas fa-tags"></i> {{$post->category->category_name}}</p>
                 <h2 id="show-post-title">{{$post->title}}</h2>
                 <p id="show-post-content">{!! nl2br(e($post->content)) !!}</p>
+                @if ($post->image)
+                    <img class="post-image" src="/storage/posts/{{$post->image}}">
+                @endif
                 @auth
                     @if($like_model->like_exist(Auth::user()->id,$post->id))
                     <p class="favorite-marke"><a class="js-like-toggle loved" href="" data-postid="{{ $post->id }}"><i class="fas fa-heart"></i></a> <span class="likesCount">{{$post->likes_count}}</span></p>
@@ -40,9 +43,13 @@
 
             @foreach ($comments as $comment)
             <div id="comment-wrapper">
-                <p id="comment-name"><span>【{{$loop->index}}】</span> {{$comment->name}} <span>さんのコメント</span></p>
-                <p id='comment-comment'>{!! nl2br(e($comment->comment)) !!}</p>
+                <p id="comment-name"><span id="loop-index">【{{$loop->index}}】 {{$comment->name}}</span> <span>さんのコメント</span></p>
                 <p id="comment-date"><i class="fas fa-calendar-alt"></i> {{$comment->created_at}}</p>
+                <p id='comment-comment'>{!! nl2br(e($comment->comment)) !!}</p>
+                @if ($comment->image)
+                <img class="post-image" src="/storage/comments/{{$comment->image}}">
+                @endif
+                <p><a class="reply" data-index="{{ $loop->index }}" href="">返信する</a></p>
             </div>
             @endforeach
         </div>
@@ -58,15 +65,21 @@
         <div class="row">
             <div class="col-sm-12">
                 <p class="comment-form">コメント</p>
-                {!! Form::open(['route' => 'comments.store']) !!}
+                {!! Form::open(['route' => 'comments.store','enctype'=>'multipart/form-data']) !!}
                 <div class="form-group">
                     {!! Form::label('name', '名前') !!}
                     {!! Form::text('name',old('name','名無し'), ['class' => 'form-control']) !!}
                 </div>
+
+                <div class='form-group'>
+                    {!! Form::label('comment_image','画像を添付する場合') !!}
+                    <img src="" id="preview_comment_image">
+                    {!! Form::file('comment_image') !!}
+                </div>
         
                 <div class="form-group">
                     {!! Form::label('comment', 'コメント') !!}
-                    {!! Form::textarea('comment', old('content'), ['class' => 'form-control']) !!}
+                    {!! Form::textarea('comment', old('content'), ['class' => 'form-control','rows'=>"8"]) !!}
                 </div>
                 {{Form::hidden('post_id', $post->id)}}
                 {!! Form::submit('コメントする', ['class' => 'btn btn-primary btn-block']) !!}

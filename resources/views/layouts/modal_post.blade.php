@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <p class="comment-form">投稿</p>
-                {!! Form::open(['route' => 'posts.store']) !!}
+                {!! Form::open(['route' => 'posts.store','enctype'=>'multipart/form-data']) !!}
                 <div class="form-group">
                     {!! Form::label('title', 'タイトル') !!}
                     {!! Form::text('title', old('title'), ['class' => 'form-control']) !!}
@@ -21,7 +21,13 @@
 
                 <div class="form-group">
                     {!! Form::label('content', '本文') !!}
-                    {!! Form::textarea('content', old('content'), ['class' => 'form-control']) !!}
+                    {!! Form::textarea('content', old('content'), ['class' => 'form-control','rows'=>"8"]) !!}
+                </div>
+
+                <div class='form-group'>
+                    {!! Form::label('post_image','画像を添付する場合') !!}
+                    <img src="" id="preview_post_image">
+                    {!! Form::file('post_image') !!}
                 </div>
 
                 {!! Form::submit('投稿する', ['class' => 'btn btn-primary btn-block']) !!}

@@ -10,7 +10,7 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::orderBy('id', 'desc')->paginate(1);
+        $users = User::orderBy('id', 'desc')->paginate(20);
         $users_lanking = User::total_score('week')->sortByDesc('total')->take(10);
         // サイドバーのプロフィールで使う
         $me =  User::get_me();
@@ -54,7 +54,7 @@ class UsersController extends Controller
         $user->instagram_url=$request->instagram_url;
         $user->youtube_url=$request->youtube_url;
 
-
+        // 画像を保存
         if ($request->file('profile_image')) {
             // 設定しているプロフィール画像の保存先を取得
             $image ='storage/avatar/'.$user->profile_image;

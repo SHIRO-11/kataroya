@@ -53,6 +53,11 @@
 //hover時に現れるプロフィール
 @import 'profile_hover';
 
+// 認証ユーザーがフォローしている人
 @import 'users/followings';
 
-@import 'guest_head'
+// guestの時のposts.index
+@import 'guest_head';
+
+// カテゴリーの一覧(index)
+@import 'categories/index';

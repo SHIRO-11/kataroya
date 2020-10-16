@@ -37463,17 +37463,19 @@ $(function () {
       }
     }) // Ajaxリクエストが成功した場合
     .done(function (data) {
+      var loop = 0;
       nav = "\n                <h4><i class=\"fas fa-trophy\"></i> \u30E6\u30FC\u30B6\u30FC\u30E9\u30F3\u30AD\u30F3\u30B0</h4>\n                <ul class=\"nav nav-tabs nav-justified\">\n                     <li class=\"nav-item\">\n                        <a href=\"\" class=\"lanking-period nav-link ".concat(period == 'week' ? 'active' : '', "\" data-period=\"week\">\u4ECA\u9031</a>\n                    </li>\n\n                    <li class=\"nav-item\">\n                        <a href=\"\" class=\"lanking-period nav-link ").concat(period == 'month' ? 'active' : '', "\" data-period=\"month\">\u4ECA\u6708</a>\n                    </li>\n\n                    <li class=\"nav-item\">\n                        <a href=\"\" class=\"lanking-period nav-link ").concat(period == 'all' ? 'active' : '', "\" data-period=\"all\">\u7DCF\u5408</a>\n                    </li>\n                </ul>\n                ");
 
       var sort = _.orderBy(data, 'total', 'desc');
 
       $.each(sort, function (index, value) {
         //dataの中身からvalueを取り出す
+        loop++;
         var id = value.id;
         var profile_image = value.profile_image;
         var name = value.name;
         var total = value.total;
-        html += "\n                    <div class=\"user-lanking-one-wrapper\">\n                        <div class=\"lanking-left\">\n                            <a href=\"".concat(protocol, "//").concat(url, "/users/").concat(id, "\"><img class=\"top-post-img\"\n                                    src=\"/storage/").concat(profile_image ? 'avatar/' + profile_image : 'images/no-image.jpg', "\">\n                            </a>\n                            <a href=\"").concat(protocol, "//").concat(url, "/users/").concat(id, "\" class=\"user-lanking-name\">").concat(name, "</a>\n                        </div>\n                        <div class=\"lanking-right\">\n                            <p class=\"lanking-score-count\">").concat(total, "</p><p>score</p>\n                        </div>\n\n                    </div>\n                    ");
+        html += "\n                    <div class=\"user-lanking-one-wrapper\">\n                        <div class=\"lanking-left\">\n                        ".concat(loop, "\n                            <a href=\"").concat(protocol, "//").concat(url, "/users/").concat(id, "\"><img class=\"top-post-img\"\n                                    src=\"/storage/").concat(profile_image ? 'avatar/' + profile_image : 'images/no-image.jpg', "\">\n                            </a>\n                            <a href=\"").concat(protocol, "//").concat(url, "/users/").concat(id, "\" class=\"user-lanking-name\">").concat(name, "</a>\n                        </div>\n                        <div class=\"lanking-right\">\n                            <p class=\"lanking-score-count\">").concat(total, "</p><p class=\"score\">score</p>\n                        </div>\n\n                    </div>\n                    ");
       });
       user_lanking_wrapper.html(nav + html);
       console.log('成功');
@@ -37508,6 +37510,15 @@ $(function () {
   }); //コメントの+マークを押したときの処理
 
   $(document).on('click', '.js-modal-open-comment', function () {
+    $('.js-modal').fadeIn();
+    return false;
+  });
+  $('.js-modal-close-comment').on('click', function () {
+    $('.js-modal').fadeOut();
+    return false;
+  }); //返信を押したときの処理
+
+  $(document).on('click', '.reply', function () {
     $('.js-modal').fadeIn();
     return false;
   });
@@ -37553,12 +37564,51 @@ $(document).on("change", "#profile_image", function (e) {
     reader.onload = function (e) {
       var userThumbnail;
       userThumbnail = document.getElementById('preview_profile_image');
-      console.log(userThumbnail);
       userThumbnail.setAttribute('src', e.target.result);
     };
 
     return reader.readAsDataURL(e.target.files[0]);
   }
+}); // 投稿に画像が追加された時
+
+$(document).on("change", "#post_image", function (e) {
+  var reader;
+
+  if (e.target.files.length) {
+    reader = new FileReader();
+
+    reader.onload = function (e) {
+      var postImage;
+      postImage = document.getElementById('preview_post_image');
+      postImage.setAttribute('src', e.target.result);
+    };
+
+    return reader.readAsDataURL(e.target.files[0]);
+  }
+}); // 投稿に画像が追加された時
+
+$(document).on("change", "#comment_image", function (e) {
+  var reader;
+
+  if (e.target.files.length) {
+    reader = new FileReader();
+
+    reader.onload = function (e) {
+      var commentImage;
+      commentImage = document.getElementById('preview_comment_image');
+      commentImage.setAttribute('src', e.target.result);
+    };
+
+    return reader.readAsDataURL(e.target.files[0]);
+  }
+});
+$(document).on("click", ".reply", function (e) {
+  var $this = $(this);
+  comment = document.getElementById('comment');
+  index = $this.data('index');
+  console.log(index);
+  comment.value = "\u8FD4\u4FE1\u5148>>>>>".concat(index, " \u3055\u3093");
+  return false;
 });
 
 /***/ }),

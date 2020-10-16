@@ -8,7 +8,7 @@
         <h2><i class="fas fa-clipboard-list"></i> 投稿一覧</h2>
         @foreach ($posts as $post)
         <div class="show-posts-substance">
-            <p class="category show-user-post-category"><i class="fas fa-tags"></i> {{$post->category}}</p>
+            <p class="category show-user-post-category"><i class="fas fa-tags"></i> {{$post->category->category_name}}</p>
             <h2 class="show-post-title"><a href="{{route('posts.show',['post'=>$post->id])}}">{{$post->title}}</a></h2>
             <p class="show-post-date"><i class="fas fa-calendar-alt"></i> {{$post->created_at}}</p>
         </div>

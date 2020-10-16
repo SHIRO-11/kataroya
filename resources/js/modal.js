@@ -19,6 +19,16 @@ $(function () {
         return false;
     });
 
+    //返信を押したときの処理
+    $(document).on('click', '.reply', function () {
+        $('.js-modal').fadeIn();
+        return false;
+    });
+    $('.js-modal-close-comment').on('click', function () {
+        $('.js-modal').fadeOut();
+        return false;
+    });
+
     //タイムラインの+マークを押したときの処理
     $('.js-modal-open-commons').on('click', function () {
         $('.js-modal-commons').fadeIn();

@@ -18,6 +18,12 @@
   margin-left: auto;
 }
 
+.navbar .search-box {
+  display: inline-block;
+  width: auto;
+  height: 30px;
+}
+
 /*!
  * Bootstrap v4.5.2 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
@@ -11037,6 +11043,7 @@ body .category {
 
 .show-post-wrapper #show-main-post-wrapper {
   padding: 20px 0;
+  border-bottom: 1px solid #ebebeb;
 }
 
 .show-post-wrapper #show-main-post-wrapper #show-post-title {
@@ -11065,6 +11072,12 @@ body .category {
   height: 20px;
 }
 
+.show-post-wrapper #show-main-post-wrapper .post-image {
+  margin: 0 0 20px 20px;
+  display: block;
+  max-width: 70%;
+}
+
 .show-post-wrapper #show-main-post-wrapper #show-post-user {
   display: inline-block;
   padding: 0 10px;
@@ -11078,28 +11091,30 @@ body .category {
 
 .show-post-wrapper #comment-wrapper {
   padding: 10px;
-  border-top: 1px solid lightgray;
 }
 
 .show-post-wrapper #comment-wrapper #comment-name {
   font-size: 18px;
+  font-weight: bold;
   margin: 5px 0 10px 0;
+  display: inline-block;
 }
 
 .show-post-wrapper #comment-wrapper #comment-name span {
   font-size: 14px;
 }
 
-.show-post-wrapper #comment-wrapper #comment-comment {
-  font-size: 16px;
-  margin: 0 0 5px 0;
-}
-
 .show-post-wrapper #comment-wrapper #comment-date {
+  display: inline-block;
   padding: 0 10px 0 0;
   margin: 0;
   color: #ababab;
   text-align: right;
+}
+
+.show-post-wrapper #comment-wrapper #comment-comment {
+  font-size: 16px;
+  margin: 0 0 5px 0;
 }
 
 .side-bar-left {
@@ -11134,6 +11149,11 @@ body .category {
     position: static;
     height: 100%;
     display: flex;
+    text-align: center;
+  }
+
+  .side-bar-left a {
+    font-size: 14px;
   }
 }
 
@@ -11142,6 +11162,11 @@ body .category {
     position: static;
     height: 100%;
     display: flex;
+    text-align: center;
+  }
+
+  .side-bar-left a {
+    font-size: 14px;
   }
 }
 
@@ -11303,11 +11328,18 @@ body .category {
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 60%;
 }
 
 .modal .modal__content .comment-form {
   font-size: 28px;
+}
+
+.modal .modal__content #preview_post_image {
+  max-height: 50px;
+}
+
+.modal .modal__content #preview_comment_image {
+  max-height: 50px;
 }
 
 .js-modal-open-comment {
@@ -11784,5 +11816,9 @@ body .category {
   .guest-head .guest-head-login {
     display: none;
   }
+}
+
+.category-link {
+  margin-bottom: 5px;
 }
 

@@ -28,17 +28,4 @@ class Post extends Model
     {
         return $this->hasOne(Category::class);
     }
-
-    public function textLimit($content)
-    {
-        //文字数の上限
-        $limit = 30;
- 
-        if (mb_strlen($content) > $limit) {
-            $content = mb_substr($content, 0, $limit);
-            return $content. '[‪...続き‬を読む]' ;
-        } else {
-            return $content;
-        }
-    }
 }

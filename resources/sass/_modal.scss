@@ -26,17 +26,17 @@
         position: absolute;
         top: 50%;
         transform: translate(-50%, -50%);
-        width: 60%;
 
         .comment-form {
             font-size: 28px;
         }
 
-        .form-group {
+        #preview_post_image {
+            max-height: 50px;
+        }
 
-            label {}
-
-            .form-control {}
+        #preview_comment_image {
+            max-height: 50px;
         }
     }
 

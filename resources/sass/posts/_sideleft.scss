@@ -30,12 +30,22 @@
         position: static;
         height: 100%;
         display: flex;
+        text-align: center;
+
+        a {
+            font-size: 14px;
+        }
     }
 
     @include xs {
         position: static;
         height: 100%;
         display: flex;
+        text-align: center;
+
+        a {
+            font-size: 14px;
+        }
     }
 }
 
