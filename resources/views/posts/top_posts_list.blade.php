@@ -1,6 +1,4 @@
 <div class="top-post-one-wrapper">
-
-    あいうえおテストだよ。
     <div class="top-post-left">
         <a href="{{route('users.show',['user'=>$post->user->id])}}"><img class="top-post-img"
                 src="/storage/{{!empty($post->user->profile_image) ? 'avatar/'.$post->user->profile_image : 'images/no-image.jpg'}}"></a>
