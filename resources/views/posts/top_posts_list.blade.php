@@ -11,7 +11,7 @@
         <p class="top-post-date"><i class="fas fa-calendar-alt"></i> {{$post->created_at}}</p>
         <h2 id="top-post-title"><a href="{{route('posts.show',['post'=>$post->id])}}">{{$post->title}}</a>
         </h2>
-        <p id="top-post-content">{!! nl2br(e(Str::limit($post->content, 1,$end = '...'))) !!}</p>
+        <p id="top-post-content">{!! nl2br(e(Str::limit($post->content, 10,$end = '...'))) !!}</p>
         {{--  ログイン中のときのいいねマーク  --}}
         @auth
         @if($like_model->like_exist(Auth::user()->id,$post->id))
